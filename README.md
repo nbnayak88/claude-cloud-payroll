@@ -22,6 +22,9 @@ Content lives in `tools/spec_pcc.py` and `tools/spec_p2p.py`. Change `CORE` in t
 ## Next
 After approval of this India edition, the same two parts can be generated for the other country workbooks in `nbnayak88/payroll`.
 
-## PlayLab Arcade (wave 1)
+## PlayLab Arcade
 
-The arcade follows the PlayLab 108 universal game standard (`nbnayak88/PlayLab-108`). All 108 templates are listed; **36 are playable** (3 per family) and the other 72 are marked "Design only", as the standard requires. Engine: `tools/playlab/` (generic runtime, content pack `employee-central-payroll.india.v1`). Rebuild with `python3 tools/playlab/build_engine.py && python3 tools/extend_to_108.py`. Scenarios are fictional; a game score is not a certification.
+The arcade follows the PlayLab 108 universal game standard (`nbnayak88/PlayLab-108`). All 108 templates are listed and **all 108 are playable** with the India learning content pack (12 families × 9). Each game has a start screen, rules, scoring from 100, a finite end state, retry, an untimed accessible mode and a stored result record. A template that is not built is marked "Design only", as the standard requires. Engine: `tools/playlab/` (generic runtime, content pack `employee-central-payroll.india.v1`). Rebuild with `python3 tools/playlab/build_engine.py && python3 tools/extend_to_108.py`. Scenarios are fictional; a game score is not a certification.
+
+
+Automated checks used for the release: every game is auto-played to a win on three seeds, and every game is fuzzed with random clicks and input in untimed and timed modes. Puzzle data (crossword, logic grids, nonograms, binary grids, schedules, numbers) is verified solvable when the pack is built (`tools/playlab/arcade_pack2.py`). These are automated tests, not human playtesting.

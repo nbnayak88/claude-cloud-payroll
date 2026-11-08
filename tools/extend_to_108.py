@@ -165,7 +165,7 @@ def learning_tools(s, d, c, mods):
         assert s.count(old) >= 1, old
         s = s.replace(old, new)
     rep("['notes','Sticky Notes','Capture assumptions, questions and experiments']];",
-        "['notes','Sticky Notes','Capture assumptions, questions and experiments'],['sequence','Sequence Sprint','Put real process steps in the right order'],['match','Match-Up','Pair SAP objects with what they do'],['arcade','PlayLab Arcade','36 playable games from the 108-game PlayLab standard']];")
+        "['notes','Sticky Notes','Capture assumptions, questions and experiments'],['sequence','Sequence Sprint','Put real process steps in the right order'],['match','Match-Up','Pair SAP objects with what they do'],['arcade','PlayLab Arcade','108 playable games from the PlayLab standard']];")
     rep("flash:'▱',notes:'▣'}", "flash:'▱',notes:'▣',sequence:'⇅',match:'⇄',arcade:'🎮'}")
     rep("'12 country and process questions'", "'%d country, process and scenario questions'" % n_q)
     rep("'25 cards to explain and retrieve'", "'%d cards to explain and retrieve'" % n_c)

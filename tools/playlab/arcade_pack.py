@@ -239,7 +239,9 @@ def build(quiz, sequences):
     pack = dict(id=PACK_ID, version=PACK_VERSION, subject='Employee Central Payroll (India learning case)', locale='en', quiz=quiz, sequences=sequences, tf=TF, words=WORDS, hang=HANG, pairs=PAIRS, odd=ODD,
                 symbols4=SYMBOLS4, symbols6=SYMBOLS6, rooms=ROOMS, island=dict(days=ISLAND), whack=WHACK, dominoes=DOMINOES, approvals=APPROVALS, budget=BUDGET, resources=RESOURCES,
                 risks=RISKS, errors=ERRORS, recon=RECON, config=CONFIG, zones=ZONES, stepLabels=STEP_LABELS, graph=GRAPH, calc=calc_items(), optimize=OPT, percent=percent_items())
-    # Sudoku solved-grid check needs no data; sequences must have >=4 steps
+    import arcade_pack2
+    pack.update(arcade_pack2.build_all())
+    # sequences must have >=4 steps
     assert all(len(s['steps']) >= 4 for s in sequences)
     return dict(registry=registry(), pack=pack, source=SOURCE)
 

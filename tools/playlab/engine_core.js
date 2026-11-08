@@ -1,6 +1,6 @@
 /* PlayLab 108 runtime for SuccessLabs payroll workbooks.
    Generic engine: games read a content pack (DATA.pack); no subject facts are hard-coded here.
-   Standard: PLAYLAB-108-MASTER.md v1.0.0. Wave 1 implements 36 of the 108 templates. */
+   Standard: PLAYLAB-108-MASTER.md v1.0.0. Wave 2 implements all 108 templates. */
 var Arcade=(function(){
 'use strict';
 var DATA=null,cur=null,RK='playlab108-results',G={},VERSION='1.0.0';
@@ -21,7 +21,7 @@ function home(){
   var impl=DATA.registry.filter(function(t){return!!G[t.templateId]}).length;
   var res=load(),won=DATA.registry.filter(function(t){return res.some(function(x){return x.templateId===t.templateId&&x.outcome==='won'})}).length;
   return '<div class="card"><div class="side-stat"><strong>'+impl+' playable · '+(DATA.registry.length-impl)+' design only</strong><span>'+won+' won on this device</span></div>'+
-  '<p>PlayLab 108 is the SuccessLabs game standard: 108 reusable templates, each with a visible start, rules, feedback, scoring, an end screen and retry. This arcade runs the <strong>'+esc(DATA.pack.subject)+'</strong> content pack with fictional data. Games marked <em>Design only</em> are specified in the standard but not built yet.</p>'+
+  '<p>PlayLab 108 is the SuccessLabs game standard: 108 reusable templates, each with a visible start, rules, feedback, scoring, an end screen and retry. This arcade runs the <strong>'+esc(DATA.pack.subject)+'</strong> content pack with fictional data. '+((DATA.registry.length-impl)?'Games marked <em>Design only</em> are specified in the standard but not built yet.':'All 108 templates are playable in this pack.')+'</p>'+
   '<div class="notice" role="note">Fictional scenarios, original to this workbook; not official product game content, not a certification. A game score does not prove skills or readiness. Source line for PlayLab: '+esc(DATA.source)+'</div>'+
   '<div class="pager"><button class="btn" id="arcexport">Export results (JSON)</button><button class="btn" id="arcclear">Clear my results</button></div></div>'+
   order.map(function(f){return '<div class="sectiontitle"><h2>'+esc(f)+'</h2><span class="small muted">'+fams[f].filter(function(t){return G[t.templateId]}).length+' of '+fams[f].length+' playable</span></div><div class="arc-grid">'+fams[f].map(function(t){var ok=!!G[t.templateId],b=best(t.templateId);
