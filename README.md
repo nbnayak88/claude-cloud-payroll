@@ -15,7 +15,7 @@ Every new section has: what and why, 4–5 steps, a configuration and evidence s
 ## Countries
 107 countries come from the existing 54-section country workbooks (62 original, 3 main-chapter and 42 appendix-based baselines). **Zambia** is the 108th, added as the 108th Workbook Edition. It is not listed in SAP's 2H 2026 country-specifics document, so it was built from public authority pages (ZRA, NAPSA, NHIMA) with no rates or bands preloaded; confirm support in your own release.
 
-There is a single edition, the Workbook Edition, and every country has all 108 core sections and 9 learning tools. 42 countries (for example Angola, Kosovo, Vietnam) started from an appendix-only baseline with no currency and no statutory calculation. Their worked examples use the ISO test currency code `XTS`.
+There is a single edition, the Essentials Edition (Gold Edition), and every country has all 108 core sections and 9 learning tools. 42 countries (for example Angola, Kosovo, Vietnam) started from an appendix-only baseline with no currency and no statutory calculation. Their worked examples use the ISO test currency code `XTS`.
 
 ## Evidence boundary
 Examples use fictional workers (`TEST-<country code>-001` to `004`) and arbitrary amounts. Object names (for example `HRSFEC_PTP_CONFIG`, `PYC_CONFIG_WORKBENCH`) are a design and learning checklist: **confirm each in your own release**. Nothing was executed in a tenant. No affiliation with SAP is claimed.

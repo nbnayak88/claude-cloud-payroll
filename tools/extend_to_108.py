@@ -92,7 +92,7 @@ EDITION_WORDING = [
     (' ECP Replication Workbook', ' ECP Workbook'), (' Replication Workbook', ' Payroll Workbook'),
     ('Country replication \u00b7 living learning workbook', 'Country payroll \u00b7 living learning workbook'),
     (' replication, made tangible', ' payroll, made tangible'),
-    ('SAP appendix \u00b7 Replication practice', 'Workbook Edition'),
+    ('SAP appendix \u00b7 Replication practice', 'Essentials Edition (Gold Edition)'),
     (' Replication \u00b7 2026', ' Payroll \u00b7 2026'),
     ('replication learning workbook. 108 guided sections including twelve replication experiments',
      'Employee Central Payroll configuration workbook. 108 guided sections including twelve mapping experiments'),
@@ -159,6 +159,17 @@ def guide_cleanup(s):
     for a, b in GUIDE_TEXT:
         s = s.replace(a, b)
     return s
+
+GOLD_BADGE = ('<svg width="13" height="13" viewBox="0 0 24 24" aria-hidden="true" style="vertical-align:-2px;margin-right:4px"><defs><linearGradient id="gb" x1="0" y1="0" x2="1" y2="1">'
+              '<stop offset="0" stop-color="#F7E58B"/><stop offset=".55" stop-color="#D4AF37"/><stop offset="1" stop-color="#8A6B12"/></linearGradient></defs>'
+              '<circle cx="12" cy="12" r="10.5" fill="url(#gb)" stroke="#8A6B12"/><path d="M12 5.2l1.9 4 4.4.5-3.3 3 .9 4.4-3.9-2.2-3.9 2.2.9-4.4-3.3-3 4.4-.5z" fill="#FFF8DC" stroke="#8A6B12" stroke-width=".6"/></svg>')
+HEADER_SPAN = '<span>Employee Central Payroll \u00b7 2026\u20132027 onward</span>'
+
+
+def gold_edition(s):
+    """Every workbook is the Essentials Edition (Gold Edition), marked with a gold medal in the header."""
+    assert HEADER_SPAN in s
+    return s.replace(HEADER_SPAN, '<span>Employee Central Payroll \u00b7 2026\u20132027 onward<br>' + GOLD_BADGE + '<b style="color:#8A6B12;font-weight:600">Essentials Edition (Gold Edition)</b></span>', 1)
 
 
 ARC_CSS = ('.arc-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:12px;margin-bottom:18px}.arc-tile{border:1px solid var(--line);border-radius:14px;padding:14px;background:var(--surface);display:flex;flex-direction:column;gap:8px}.arc-tile.off{opacity:.62}.quizopt.correct{border-color:#2e8b57;background:#e9f6ee}.quizopt.wrong{border-color:#c0562f;background:#fdeee8}.table{width:100%;border-collapse:collapse}.table th,.table td{padding:8px 10px;border-bottom:1px solid var(--line);text-align:left;font-size:13px;vertical-align:top}')
@@ -305,6 +316,7 @@ def build_country(s, out_name):
     m = DATA_RE.search(s)
     s = s[:m.start(2)] + enc(d) + s[m.end(2):]
     s = normalise(s)
+    s = gold_edition(s)
     if X.app:
         s = guide_cleanup(edition_wording(s))
     elif X.country == 'Zambia':
