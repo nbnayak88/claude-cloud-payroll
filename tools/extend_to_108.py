@@ -16,11 +16,14 @@ REPO = ROOT.parent
 sys.path.insert(0, str(ROOT))
 import spec_pcc, spec_p2p, vendor_enrich as enrich  # noqa: E402
 
+import sys
 import tools_content as TC
 import sanitize_content as SC
+sys.path.insert(0, str(Path(__file__).parent / 'playlab'))
+import arcade_pack
 
 CORE = 108
-TOOLS = 8
+TOOLS = 9
 NEW_CATS = ['Payroll Control Center', 'EC–ECP Replication']
 REVIEWED = '8 November 2026'
 
@@ -84,6 +87,8 @@ def normalise(s):
     return s
 
 
+ARC_CSS = ('.arc-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:12px;margin-bottom:18px}.arc-tile{border:1px solid var(--line);border-radius:14px;padding:14px;background:var(--surface);display:flex;flex-direction:column;gap:8px}.arc-tile.off{opacity:.62}.quizopt.correct{border-color:#2e8b57;background:#e9f6ee}.quizopt.wrong{border-color:#c0562f;background:#fdeee8}.table{width:100%;border-collapse:collapse}.table th,.table td{padding:8px 10px;border-bottom:1px solid var(--line);text-align:left;font-size:13px;vertical-align:top}')
+ARC_ENGINE = (Path(__file__).parent / 'playlab' / 'arcade_engine.js').read_text()
 PLAYER_CSS = ('@media(min-width:761px){header{grid-template-columns:auto auto auto minmax(160px,1fr) minmax(190px,240px) auto !important}}@media(max-width:760px){header{padding-top:58px !important}.focus{position:absolute;top:10px;left:12px}}.focus{flex:none;display:flex;align-items:center;gap:8px;margin-right:4px}.focus button{display:inline-flex;align-items:center;gap:6px;padding:7px 11px;font-size:13px;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--text);font-weight:600;cursor:pointer}'
               '.focus button[aria-pressed="true"]{background:var(--deep);color:#fff;border-color:var(--deep)}.focus .eq{font-size:11px;opacity:.7}@media(max-width:700px){.focus .lbl{display:none}}')
 PLAYER_HTML = ('<div class="focus"><button type="button" id="focusbtn" aria-pressed="false" aria-label="Play focus music"><span id="focusicon" aria-hidden="true">\u25b6</span><span class="lbl" id="focuslbl">Focus</span></button>'
@@ -142,6 +147,8 @@ def learning_tools(s, d, c, mods):
         if x['n'] >= 55 and len(x['steps']) >= 4 and x['n'] % 2 == 1:
             d['sequence'].append(dict(n=x['n'], title=x['title'], steps=x['steps'][:6]))
     d['match'] = [[t, m] for t, m, _ in terms]
+    d['arcade'] = arcade_pack.build(d['quiz'], d['sequence'])
+    c['toolReflections']['arcade'] = {'Affirmation': 'I can learn by playing and still take the work seriously.', 'Visualization': 'I picture myself solving the puzzle calmly, one clear move at a time.', 'Gratitude': 'I am grateful for games that make hard ideas easy to practise.', 'Intention': 'Today I will finish one game and explain what it taught me.'}
     refl = lambda a, v, g, i: {'Affirmation': a, 'Visualization': v, 'Gratitude': g, 'Intention': i}
     c['toolReflections']['sequence'] = refl('I can explain why each payroll step comes before the next.',
         'I picture the process as a line of checkpoints, each one needing evidence before the next opens.',
@@ -158,19 +165,20 @@ def learning_tools(s, d, c, mods):
         assert s.count(old) >= 1, old
         s = s.replace(old, new)
     rep("['notes','Sticky Notes','Capture assumptions, questions and experiments']];",
-        "['notes','Sticky Notes','Capture assumptions, questions and experiments'],['sequence','Sequence Sprint','Put real process steps in the right order'],['match','Match-Up','Pair SAP objects with what they do']];")
-    rep("flash:'▱',notes:'▣'}", "flash:'▱',notes:'▣',sequence:'⇅',match:'⇄'}")
+        "['notes','Sticky Notes','Capture assumptions, questions and experiments'],['sequence','Sequence Sprint','Put real process steps in the right order'],['match','Match-Up','Pair SAP objects with what they do'],['arcade','PlayLab Arcade','36 playable games from the 108-game PlayLab standard']];")
+    rep("flash:'▱',notes:'▣'}", "flash:'▱',notes:'▣',sequence:'⇅',match:'⇄',arcade:'🎮'}")
     rep("'12 country and process questions'", "'%d country, process and scenario questions'" % n_q)
     rep("'25 cards to explain and retrieve'", "'%d cards to explain and retrieve'" % n_c)
     rep("'25 prompts. Predict", "'%d prompts. Predict" % n_c)
     rep("<strong>25</strong><span>Country flashcards", "<strong>%d</strong><span>Country flashcards" % n_c)
     rep("<strong>12</strong><span>Quiz questions", "<strong>%d</strong><span>Quiz questions" % n_q)
-    rep("Six learning tools", "Eight learning tools")
-    rep("6 learning tools", "8 learning tools")
-    s = re.sub(r"Learning tool (\d) / 6", r"Learning tool \1 / 8", s)
-    rep("else if(id==='game')out=game();", "else if(id==='game')out=game();else if(id==='sequence')out=sequence();else if(id==='match')out=match();")
-    rep("if(active==='game')bindGame();", "if(active==='game')bindGame();if(active==='sequence')bindSequence();if(active==='match')bindMatch();")
-    rep("function quiz(){", js + "\nfunction crosswordTerms(){return crosswordTerms0().concat(" + json.dumps(TC.EXTRA_CROSSWORD, ensure_ascii=False) + ")}\nfunction quiz(){")
+    rep("Six learning tools", "Nine learning tools")
+    rep("6 learning tools", "9 learning tools")
+    s = re.sub(r"Learning tool (\d) / 6", r"Learning tool \1 / 9", s)
+    rep("else if(id==='game')out=game();", "else if(id==='game')out=game();else if(id==='sequence')out=sequence();else if(id==='match')out=match();else if(id==='arcade')out=arcade();")
+    rep("if(active==='game')bindGame();", "if(active==='game')bindGame();if(active==='sequence')bindSequence();if(active==='match')bindMatch();if(active==='arcade'){Arcade.init(D.arcade);Arcade.view()}")
+    rep("function render(id){active=id;", "function render(id){if(window.Arcade)Arcade.stop();active=id;")
+    rep("function quiz(){", ARC_ENGINE + "\nfunction arcade(){return header('Learning tool 9 / 9',P.name+' PlayLab arcade','Real, finishable games from the PlayLab 108 standard, played with fictional payroll scenarios.')+'<div id=\"arcade-root\"></div>'}\n" + js + "\nfunction crosswordTerms(){return crosswordTerms0().concat(" + json.dumps(TC.EXTRA_CROSSWORD, ensure_ascii=False) + ")}\nfunction quiz(){")
     rep("function crosswordTerms(){const country", "function crosswordTerms0(){const country")
     return s
 
@@ -217,7 +225,7 @@ def main():
     s = s[:m.start(2)] + enc(d) + s[m.end(2):]
     s = normalise(s)
     k = s.rindex('</style>')
-    s = s[:k] + PLAYER_CSS + s[k:]
+    s = s[:k] + ARC_CSS + PLAYER_CSS + s[k:]
     s = s.replace('<header>', '<header>' + PLAYER_HTML, 1)
     s = s.replace('</body>', '<script>' + PLAYER_JS + '</script></body>', 1)
     (REPO / 'India.html').write_text(s)
