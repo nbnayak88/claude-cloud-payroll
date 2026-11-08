@@ -4,7 +4,7 @@ Sections 55-81  Payroll Control Center detailed configuration   (spec_pcc.py)
 Sections 82-108 EC -> ECP point-to-point replication steps      (spec_p2p.py)
 
 Input : tools/base/India_54.html   (54 core sections + 6 learning tools)
-Output: India.html                 (108 core sections + 6 learning tools)
+Output: India.html                 (108 core sections + 8 learning tools)
 Run   : python3 tools/extend_to_108.py
 Idempotent: always rebuilds from the 54-section base.
 """
@@ -16,8 +16,10 @@ REPO = ROOT.parent
 sys.path.insert(0, str(ROOT))
 import spec_pcc, spec_p2p, vendor_enrich as enrich  # noqa: E402
 
+import tools_content as TC
+
 CORE = 108
-TOOLS = 6
+TOOLS = 8
 NEW_CATS = ['Payroll Control Center', 'EC–ECP Replication']
 REVIEWED = '8 November 2026'
 
@@ -81,6 +83,61 @@ def normalise(s):
     return s
 
 
+def learning_tools(s, d, c, mods):
+    """Expand quiz/cards/crossword and add the Sequence Sprint and Match-Up tools."""
+    import random
+    rnd = random.Random(108)
+    terms = TC.TERMS
+    d['quiz'] = d['quiz'][:12]
+    for q, opts, ans, why in TC.SCENARIOS:
+        d['quiz'].append(dict(q=q, options=opts, answer=ans, why=why))
+    picked = terms[::2][:24]
+    for i, (t, m, part) in enumerate(picked):
+        pool = [x[1] for x in terms if x[2] == part and x[1] != m]
+        wrong = rnd.sample(pool, 3)
+        pos = i % 4
+        opts = wrong[:pos] + [m] + wrong[pos:]
+        d['quiz'].append(dict(q='In the %s content, what is %s?' % ('Payroll Control Center' if part == 'pcc' else 'EC-ECP replication', t),
+                              options=opts, answer=pos, why='%s: %s. Confirm exact names in your own release.' % (t, m)))
+    d['cards'] = d['cards'][:25] + [[t, m] for t, m, _ in terms]
+    d['sequence'] = []
+    for x in mods:
+        if x['n'] >= 55 and len(x['steps']) >= 4 and x['n'] % 2 == 1:
+            d['sequence'].append(dict(n=x['n'], title=x['title'], steps=x['steps'][:6]))
+    d['match'] = [[t, m] for t, m, _ in terms]
+    refl = lambda a, v, g, i: {'Affirmation': a, 'Visualization': v, 'Gratitude': g, 'Intention': i}
+    c['toolReflections']['sequence'] = refl('I can explain why each payroll step comes before the next.',
+        'I picture the process as a line of checkpoints, each one needing evidence before the next opens.',
+        'I am grateful for colleagues who document the order of work so others can follow it.',
+        'Today I will put one real process into order and write down why.')
+    c['toolReflections']['match'] = refl('I can connect each object or transaction to its job.',
+        'I picture a clean map where every term has its place and purpose.',
+        'I am grateful for the SAP documentation that names these objects clearly.',
+        'Today I will match three terms and use each in a sentence.')
+    n_q, n_c = len(d['quiz']), len(d['cards'])
+    js = TC.JS
+    def rep(old, new, count=1):
+        nonlocal s
+        assert s.count(old) >= 1, old
+        s = s.replace(old, new)
+    rep("['notes','Sticky Notes','Capture assumptions, questions and experiments']];",
+        "['notes','Sticky Notes','Capture assumptions, questions and experiments'],['sequence','Sequence Sprint','Put real process steps in the right order'],['match','Match-Up','Pair SAP objects with what they do']];")
+    rep("flash:'▱',notes:'▣'}", "flash:'▱',notes:'▣',sequence:'⇅',match:'⇄'}")
+    rep("'12 country and process questions'", "'%d country, process and scenario questions'" % n_q)
+    rep("'25 cards to explain and retrieve'", "'%d cards to explain and retrieve'" % n_c)
+    rep("'25 prompts. Predict", "'%d prompts. Predict" % n_c)
+    rep("<strong>25</strong><span>Country flashcards", "<strong>%d</strong><span>Country flashcards" % n_c)
+    rep("<strong>12</strong><span>Quiz questions", "<strong>%d</strong><span>Quiz questions" % n_q)
+    rep("Six learning tools", "Eight learning tools")
+    rep("6 learning tools", "8 learning tools")
+    s = re.sub(r"Learning tool (\d) / 6", r"Learning tool \1 / 8", s)
+    rep("else if(id==='game')out=game();", "else if(id==='game')out=game();else if(id==='sequence')out=sequence();else if(id==='match')out=match();")
+    rep("if(active==='game')bindGame();", "if(active==='game')bindGame();if(active==='sequence')bindSequence();if(active==='match')bindMatch();")
+    rep("function quiz(){", js + "\nfunction crosswordTerms(){return crosswordTerms0().concat(" + json.dumps(TC.EXTRA_CROSSWORD, ensure_ascii=False) + ")}\nfunction quiz(){")
+    rep("function crosswordTerms(){const country", "function crosswordTerms0(){const country")
+    return s
+
+
 def main():
     s = (ROOT / 'base' / 'India_54.html').read_text()
     m = DATA_RE.search(s)
@@ -112,6 +169,8 @@ def main():
         if x['n'] >= 55:
             x['tables'] = [t for t in x['tables'] if not t.get('_slaSynthetic')] + [enrich.fixture_table(x['n'], c)]
     c['version'] = '2026-11-08-india-108'
+    s = learning_tools(s, d, c, mods)
+    cm = CASE_RE.search(s)
 
     enc = lambda o: json.dumps(o, ensure_ascii=False, separators=(',', ':')).replace('</', r'<\/')
     s = s[:cm.start(2)] + enc(c) + s[cm.end(2):]

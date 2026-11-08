@@ -1,6 +1,6 @@
 # Claude Cloud Payroll · India test edition
 
-Employee Central Payroll learning workbook for India, expanded to **108 core sections + 6 learning tools**.
+Employee Central Payroll learning workbook for India, expanded to **108 core sections + 8 learning tools (quiz, crossword, snakes & ladders, AVG wall, flashcards, sticky notes, sequence sprint, match-up)**.
 
 | Sections | Part |
 |---|---|
