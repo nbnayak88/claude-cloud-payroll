@@ -18,7 +18,7 @@ for f in sorted(REPO.glob('*.html')):
         continue
     c = json.loads(CASE.search(f.read_text(encoding='utf-8')).group(1))
     rows.append(dict(name=c['country'], code=c['code'], file=f.name, region=REG[c['country']],
-                     ed='Replication edition' if c['edition'] == 'replication' else 'Payroll edition',
+                     ed='Workbook Edition',
                      extra=c['country'] == 'Zambia'))
 rows.sort(key=lambda r: r['name'].lower())
 assert len(rows) == 108, len(rows)
@@ -65,7 +65,7 @@ footer{padding-bottom:34px;font-size:13px;opacity:.8}
 <div class="chips" role="group" aria-label="Filter by region">__CHIPS__</div>
 <div class="grid" id="grid">__CARDS__</div>
 <p class="none" id="none">No country matches that search.</p>
-<div class="note"><strong>Evidence boundary.</strong> Learning editions with fictional people, employers and amounts. Object names must be confirmed in your own release, rates and bands are not preloaded, and nothing here is a production approval or statutory certification. Zambia is an additional edition: it is not listed in SAP's 2H 2026 country-specifics document and was built from public authority pages, so confirm support in your own release.</div>
+<div class="note"><strong>Evidence boundary.</strong> The Workbook Edition uses fictional people, employers and amounts. Object names must be confirmed in your own release, rates and bands are not preloaded, and nothing here is a production approval or statutory certification. Zambia is an additional edition: it is not listed in SAP's 2H 2026 country-specifics document and was built from public authority pages, so confirm support in your own release.</div>
 <div class="avg" aria-label="Reflection"><div><strong>Affirmation</strong>I can choose the right country and begin with a clear question.</div><div><strong>Visualization</strong>I picture the workbook open, one section at a time, with the evidence beside me.</div><div><strong>Gratitude</strong>I am grateful for colleagues who share what they learn.</div><div><strong>Intention</strong>Today I will open one country and finish one section.</div></div>
 </main>
 <footer>SuccessLabs Academy · Independent learning material · Fictional case data · No affiliation claimed with SAP or any authority</footer>
