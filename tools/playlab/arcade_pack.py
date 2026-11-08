@@ -4,7 +4,7 @@ import json, re, itertools
 from pathlib import Path
 
 HERE = Path(__file__).parent
-PACK_ID, PACK_VERSION = 'employee-central-payroll.india.v1', '1.0.0'
+PACK_ID, PACK_VERSION = 'employee-central-payroll.§SLUG§.v1', '1.0.0'
 SOURCE = 'https://learning.sap.com/ (official learning reference named by the PlayLab Employee Central Payroll pack; scenarios here are original and fictional)'
 
 WORDS = [['PAYROLL', 'The complete process that turns work into pay'], ['WAGETYPE', 'Code that labels a pay or deduction amount'],
@@ -119,12 +119,12 @@ RECON = [dict(w='TEST-IN-001', f='Base pay', a='80,000', b='80,000'), dict(w='TE
  dict(w='TEST-IN-002', f='Hire date', a='2026-11-16', b='2026-11-15'), dict(w='TEST-IN-003', f='Work schedule', a='60%', b='100%'),
  dict(w='TEST-IN-004', f='Termination date', a='2026-11-20', b='2026-11-20'), dict(w='TEST-IN-001', f='Bank record', a='TEST-IN-BANK-001', b='TEST-IN-BANK-010'),
  dict(w='TEST-IN-002', f='Base pay', a='64,000', b='64,000'), dict(w='TEST-IN-004', f='Base pay', a='96,000', b='69,000')]
-CONFIG = [dict(k='Payroll area', v='IN', rule='Must be the India area code', bad=False, why='IN is the India area.'),
- dict(k='Country grouping', v='IN', rule='Must match the payroll area country', bad=False, why='Matches.'),
- dict(k='Currency', v='USD', rule='India case pays in INR', bad=True, why='USD does not fit an INR case.'),
+CONFIG = [dict(k='Payroll area', v='§CODE§', rule='Must be the India area code', bad=False, why='§CODE§ is the India area.'),
+ dict(k='Country grouping', v='§CODE§', rule='Must match the payroll area country', bad=False, why='Matches.'),
+ dict(k='Currency', v='§ALT§', rule='India case pays in INR', bad=True, why='§ALT§ does not fit an INR case.'),
  dict(k='Pay period', v='Monthly', rule='Case cycle is monthly', bad=False, why='Monthly matches.'),
  dict(k='Replication target system', v='(blank)', rule='Must name the payroll system', bad=True, why='A blank target means nothing can replicate.'),
- dict(k='Employee filter country', v='IN', rule='Only India workers replicate', bad=False, why='Correct filter.'),
+ dict(k='Employee filter country', v='§CODE§', rule='Only India workers replicate', bad=False, why='Correct filter.'),
  dict(k='Time zone', v='Asia/Kolkata', rule='India time zone', bad=False, why='Correct.'),
  dict(k='Test worker ID', v='REAL-EMP-1234', rule='Learning cases use synthetic IDs only (TEST-IN-nnn)', bad=True, why='A real-looking identity must never enter a learning case.'),
  dict(k='Cost centre', v='DEMO-IN-OPS', rule='Case cost centre', bad=False, why='Matches.'),
@@ -236,7 +236,7 @@ def validate():
 
 def build(quiz, sequences):
     validate()
-    pack = dict(id=PACK_ID, version=PACK_VERSION, subject='Employee Central Payroll (India learning case)', locale='en', quiz=quiz, sequences=sequences, tf=TF, words=WORDS, hang=HANG, pairs=PAIRS, odd=ODD,
+    pack = dict(id=PACK_ID, version=PACK_VERSION, cur='INR', subject='Employee Central Payroll (India learning case)', locale='en', quiz=quiz, sequences=sequences, tf=TF, words=WORDS, hang=HANG, pairs=PAIRS, odd=ODD,
                 symbols4=SYMBOLS4, symbols6=SYMBOLS6, rooms=ROOMS, island=dict(days=ISLAND), whack=WHACK, dominoes=DOMINOES, approvals=APPROVALS, budget=BUDGET, resources=RESOURCES,
                 risks=RISKS, errors=ERRORS, recon=RECON, config=CONFIG, zones=ZONES, stepLabels=STEP_LABELS, graph=GRAPH, calc=calc_items(), optimize=OPT, percent=percent_items())
     import arcade_pack2

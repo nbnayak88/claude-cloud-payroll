@@ -160,9 +160,9 @@ FRAUD = dict(rows=[
  hyps=[dict(t='Two workers share one bank account, payments just under the 5,000 approval limit were split, and a worker who left on 20 Nov was paid again.', ok=True),
        dict(t='Everything is normal; the differences are rounding.', ok=False), dict(t='The only problem is that Clerk A works too fast.', ok=False)],
  note='Rules for this case: bank accounts are unique per worker; adjustments up to 5,000 INR need no extra approval; a worker is not paid after the termination date (TEST-IN-004 left on 20 Nov).')
-INTEG = dict(rows=[['Marital status', 'M', ['MARRIED', 'Married', '2'], 0], ['Pay frequency', 'MONTHLY', ['01', 'MONTHLY', 'M'], 0], ['Country', 'IND', ['IN', 'India', 'XX'], 0], ['Currency', 'INR', ['INR', 'USD', 'EUR'], 0]],
+INTEG = dict(rows=[['Marital status', 'M', ['MARRIED', 'Married', '2'], 0], ['Pay frequency', 'MONTHLY', ['01', 'MONTHLY', 'M'], 0], ['Country', '§A3§', ['§CODE§', 'India', 'XX'], 0], ['Currency', 'INR', ['INR', '§ALT§', '§ALT2§'], 0]],
  note='Each row lists the Employee Central value and the code the payroll system expects. Pick the payroll code that matches.',
- right=[['Marital status', 'M', 'Married'], ['Pay frequency', 'MONTHLY', '01'], ['Country', 'IND', 'IN'], ['Currency', 'INR', 'INR']])
+ right=[['Marital status', 'M', 'Married'], ['Pay frequency', 'MONTHLY', '01'], ['Country', '§A3§', '§CODE§'], ['Currency', 'INR', 'INR']])
 AUDIT = dict(reqs=['Approval of the November run', 'Bank file release authorisation', 'Reconciliation of headcount', 'Access review for clerks', 'Change log for wage type mapping', 'Evidence of backup restore test'],
  docs=['Approval email 28 Nov', 'Bank release form', 'Headcount reconciliation sheet', 'Access review sheet', 'Mapping change log', 'Cafeteria menu', 'Holiday list', 'Team photo', 'Org chart', 'Training attendance', 'Posting report', 'Meeting invite'],
  sol=[0, 1, 2, 3, 4, -1], missing=[5], note='Attach the best document to each requirement, or mark it missing when no document fits. Some documents are irrelevant.')
