@@ -35,7 +35,7 @@ chips = '<button type="button" class="chip on" data-r="">All regions <b>%d</b></
         html.escape(g), html.escape(g), sum(1 for r in rows if r['region'] == g)) for g in regions)
 
 PAGE = """<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Employee Central Payroll workbooks · 108 countries · Essentials Edition (Gold Edition)</title>
+<title>Global Payroll Lab · Essentials Edition (Gold Edition) · 108 countries</title>
 <meta name="description" content="Essentials Edition (Gold Edition): learning workbooks for 108 countries, 108 core sections and 9 learning tools each, including a PlayLab Arcade with 108 playable games.">
 <style>
 :root{--ink:#1F2A37;--muted:#5B6673;--gold:#B8902B;--gold-d:#8A6B12;--ivory:#FBF9F4;--hair:#E7E0D0;--line:#E3E7EA;--text:#1b2a33;--accent:#1263B4}
@@ -73,7 +73,7 @@ footer{padding-bottom:36px;font-size:12.5px;color:var(--muted);text-align:center
 @media(max-width:760px){.topin{grid-template-columns:1fr auto;gap:8px 14px}.daily-quote{grid-column:1/-1;grid-row:2;font-size:13px}.brand img{width:104px}.brand .tagline{display:none}.hero{padding:24px 20px 20px}.stats li{flex:1 1 45%;padding:8px 0;border-left:0}}
 @media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
 </style></head><body>
-<header class="top"><div class="topin"><div class="who"><strong>Employee Central Payroll</strong><span>Workbooks &middot; 108 countries</span></div>
+<header class="top"><div class="topin"><div class="who"><strong>Global Payroll Lab</strong><span>Essentials Edition (Gold Edition)</span></div>
 <blockquote class="daily-quote"><span id="dailyQuoteText">Strong architecture makes complex responsibilities clearer.</span><small id="quoteDate">Quote of the day</small></blockquote>
 __BRAND__</div></header>
 <main>
