@@ -17,6 +17,7 @@ sys.path.insert(0, str(ROOT))
 import spec_pcc, spec_p2p, vendor_enrich as enrich  # noqa: E402
 
 import tools_content as TC
+import sanitize_content as SC
 
 CORE = 108
 TOOLS = 8
@@ -83,6 +84,42 @@ def normalise(s):
     return s
 
 
+PLAYER_CSS = ('@media(min-width:761px){header{grid-template-columns:auto auto auto minmax(160px,1fr) minmax(190px,240px) auto !important}}@media(max-width:760px){header{padding-top:58px !important}.focus{position:absolute;top:10px;left:12px}}.focus{flex:none;display:flex;align-items:center;gap:8px;margin-right:4px}.focus button{display:inline-flex;align-items:center;gap:6px;padding:7px 11px;font-size:13px;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--text);font-weight:600;cursor:pointer}'
+              '.focus button[aria-pressed="true"]{background:var(--deep);color:#fff;border-color:var(--deep)}.focus .eq{font-size:11px;opacity:.7}@media(max-width:700px){.focus .lbl{display:none}}')
+PLAYER_HTML = ('<div class="focus"><button type="button" id="focusbtn" aria-pressed="false" aria-label="Play focus music"><span id="focusicon" aria-hidden="true">\u25b6</span><span class="lbl" id="focuslbl">Focus</span></button>'
+               '<audio id="focusaudio" loop preload="none" src="assets/focus-music.mp3"></audio></div>')
+PLAYER_JS = ("(function(){var b=document.getElementById('focusbtn'),a=document.getElementById('focusaudio');if(!b||!a)return;"
+             "function ui(on){b.setAttribute('aria-pressed',on?'true':'false');b.setAttribute('aria-label',on?'Stop focus music':'Play focus music');"
+             "document.getElementById('focusicon').textContent=on?'\u25a0':'\u25b6';document.getElementById('focuslbl').textContent=on?'Stop':'Focus'}"
+             "b.addEventListener('click',function(){if(a.paused){a.volume=.5;var p=a.play();if(p&&p.then)p.then(function(){ui(true)}).catch(function(){ui(false)});else ui(true)}else{a.pause();a.currentTime=0;ui(false)}});"
+             "a.addEventListener('ended',function(){ui(false)})})();")
+
+
+def sanitize(d, mods):
+    """No vendor, book or web references; logical worked examples with synthetic data instead."""
+    for x in mods:
+        if x['n'] < 55:
+            continue
+        t0 = x['tables'][0]
+        t0['heads'] = ['Item', 'Detail']
+        t0['rows'] = [[r[0], SC.DETAIL.get((x['n'], r[0]), r[1])] for r in t0['rows']]
+        story, rows = SC.WE[x['n']]
+        x['tables'].append(dict(title='Worked example \u00b7 synthetic case (' + story + ')',
+                                heads=['Step', 'Synthetic data (fictional)', 'Expected result'], rows=[list(r) for r in rows]))
+        x['sources'] = []
+        x['steps'] = [SC.STEP_FIX[x['n']][1] if (x['n'] in SC.STEP_FIX and st == SC.STEP_FIX[x['n']][0]) else st for st in x['steps']]
+        if x['n'] in SC.WHY_FIX:
+            x['why'] = SC.WHY_FIX[x['n']]
+    bad = re.compile(r'sap\.com|sap-press|sapinsider|rizing|sap\.|userapps', re.I)
+    d['sources'] = [r for r in d['sources'] if not bad.search(r['url'])]
+    keep = {r['ref'] for r in d['sources']}
+    for x in mods:
+        x['sources'] = [r for r in x['sources'] if r in keep]
+    blob = json.dumps(d['modules'], ensure_ascii=False)
+    for v in SC.VENDOR:
+        assert v not in blob, ('vendor wording left: ' + v, [i for i, m in enumerate(d['modules'], 1) if v in json.dumps(m, ensure_ascii=False)])
+
+
 def learning_tools(s, d, c, mods):
     """Expand quiz/cards/crossword and add the Sequence Sprint and Match-Up tools."""
     import random
@@ -98,7 +135,7 @@ def learning_tools(s, d, c, mods):
         pos = i % 4
         opts = wrong[:pos] + [m] + wrong[pos:]
         d['quiz'].append(dict(q='In the %s content, what is %s?' % ('Payroll Control Center' if part == 'pcc' else 'EC-ECP replication', t),
-                              options=opts, answer=pos, why='%s: %s. Confirm exact names in your own release.' % (t, m)))
+                              options=opts, answer=pos, why='%s: %s.' % (t, m)))
     d['cards'] = d['cards'][:25] + [[t, m] for t, m, _ in terms]
     d['sequence'] = []
     for x in mods:
@@ -169,7 +206,9 @@ def main():
         if x['n'] >= 55:
             x['tables'] = [t for t in x['tables'] if not t.get('_slaSynthetic')] + [enrich.fixture_table(x['n'], c)]
     c['version'] = '2026-11-08-india-108'
+    sanitize(d, mods)
     s = learning_tools(s, d, c, mods)
+    assert 'SAP Press' not in json.dumps(d, ensure_ascii=False)
     cm = CASE_RE.search(s)
 
     enc = lambda o: json.dumps(o, ensure_ascii=False, separators=(',', ':')).replace('</', r'<\/')
@@ -177,6 +216,10 @@ def main():
     m = DATA_RE.search(s)
     s = s[:m.start(2)] + enc(d) + s[m.end(2):]
     s = normalise(s)
+    k = s.rindex('</style>')
+    s = s[:k] + PLAYER_CSS + s[k:]
+    s = s.replace('<header>', '<header>' + PLAYER_HTML, 1)
+    s = s.replace('</body>', '<script>' + PLAYER_JS + '</script></body>', 1)
     (REPO / 'India.html').write_text(s)
     for attrs, code in re.findall(r'<script([^>]*)>(.*?)</script>', s, re.S):
         if 'application/json' in attrs:

@@ -1,15 +1,15 @@
 """Learning-tool content and script patches for sections 55-108 (Payroll Control Center and EC-ECP replication).
 
 TERMS feed the flashcards, Match-Up tool and quiz. Every term is taken from the rows in spec_pcc.py / spec_p2p.py,
-so it carries the same evidence boundary: confirm names in your own release.
+confirm exact names in your own release.
 """
 
 # (term, meaning, part) part: 'pcc' or 'p2p'. Meanings are unique so Match-Up has one right answer.
 TERMS = [
  ('PYC_CONFIG_WORKBENCH', 'Configuration workbench for Payroll Control Center objects', 'pcc'),
  ('Manage Configuration', 'No-code application for PCC key performance indicators and validation rules or alerts', 'pcc'),
- ('CL_PYC_CHK_FP4_SAMPLE', 'Delivered sample ABAP class for a custom PCC validation', 'pcc'),
- ('CL_PYC_EXAMPLE_KPI_EE_NUM', 'Delivered sample ABAP class for a custom PCC KPI (employee count)', 'pcc'),
+ ('CL_PYC_CHK_FP4_SAMPLE', 'Sample ABAP class for a custom PCC validation', 'pcc'),
+ ('CL_PYC_EXAMPLE_KPI_EE_NUM', 'Sample ABAP class for a custom PCC KPI (employee count)', 'pcc'),
  ('HCM_LOC_CI_95', 'Business function for the PCC Action Log Viewer', 'pcc'),
  ('HCM_LOC_CI_99', 'Business function for PCC alert management and team alerts', 'pcc'),
  ('HCM_LOC_CI_92', 'Business function for PCC simplified configuration', 'pcc'),
@@ -30,12 +30,12 @@ TERMS = [
  ('HRSFEC_PTP_CONFIG', 'Transaction that configures the connection from the payroll system to Employee Central', 'p2p'),
  ('HRSFEC_PTP_EE_REPL', 'Transaction that runs employee data replication (program RP_HRSFEC_PTP_EE_REPLICATION)', 'p2p'),
  ('HRSFEC_JOB_POS_REPL', 'Background job that replicates jobs, positions and organisational data', 'p2p'),
- ('HRSFEC_REPL_STATUS', 'Standard report showing the status of executed employee replication', 'p2p'),
+ ('HRSFEC_REPL_STATUS', 'Report showing the status of executed employee replication', 'p2p'),
  ('HRSFEC_PTP_LMOD', 'Transaction that maintains the Last Run Table', 'p2p'),
  ('HRSFEC_PN_FTSD', 'Transaction that maintains individual full-transmission-start-date entries', 'p2p'),
  ('T77SFEC_PTP_CONF', 'Table that holds the full transmission start date', 'p2p'),
  ('HRSFEC_D_EEKEYMP', 'Employee key mapping table used in cutover', 'p2p'),
- ('RP_HRSFEC_UPLOAD_EEKEY_MAPPING', 'SAP-supplied program that inserts rows into the employee key mapping table', 'p2p'),
+ ('RP_HRSFEC_UPLOAD_EEKEY_MAPPING', 'Program that inserts rows into the employee key mapping table', 'p2p'),
  ('HRSFEC_SPOT_EEMDR_CE', 'Shortcut transaction that opens the replication enhancement spot', 'p2p'),
  ('HRSFEC_CE_MASTER_DATA_REPL', 'Enhancement spot for adjusting master data replication logic', 'p2p'),
  ('RP_HRSFEC_PTP_EE_ABSENCE_REPL', 'Program that replicates absences to infotype 2001', 'p2p'),
@@ -57,21 +57,21 @@ TERMS = [
 
 # hand-written scenario questions: (question, options, answer index, why)
 SCENARIOS = [
- ('Starting a process from the Payroll Control Center front end does nothing. What does the SAP technical blog point to first?',
+ ('Starting a process from the Payroll Control Center front end does nothing. What is the first thing to rule out?',
   ['The OData services are not activated', 'The employee has no bank account', 'The tax year has not started', 'The quiz was not completed'], 0,
-  'The blog states that without the services enabled, nothing happens when a process is started from the front end.'),
+  'Without the services enabled, nothing happens when a process is started from the front end, so check this first.'),
  ('In point-to-point replication, which side initiates employee data transfer?',
   ['The payroll system runs the replication program and calls the Compound Employee API', 'The bank pushes data to Employee Central', 'Employee Central pushes to the payroll system with no job', 'The learner uploads a CSV'], 0,
-  'The employee replication program in the payroll system calls the Compound Employee API in Employee Central.'),
+  'The replication program in the payroll system calls the Compound Employee API in Employee Central.'),
  ('Why would you run organisational replication before employee replication?',
   ['So referenced jobs, positions and organisational units already exist', 'To delete old employees', 'To skip validation', 'To change the tax year'], 0,
   'Employees reference organisational objects, and the point-to-point framework replicates those through its own job.'),
  ('After changing a PCC process (sections, policies, members or recurrence dates), what should you do?',
   ['Restart the process so the change is reflected', 'Nothing; changes apply automatically', 'Delete the payroll area', 'Re-run the quiz'], 0,
-  'SAP learning material says to restart the process after such changes so the outcome reflects them.'),
- ('A team member list in PCC shows unexpected employees. What is the useful first step?',
+  'Restart the process after such changes so the outcome reflects them.'),
+ ('A team member list in PCC shows unexpected employees. What is a sensible first step?',
   ['Check the user and payroll-administrator relationships behind the member list', 'Rename the team', 'Change the currency', 'Disable all alerts'], 0,
-  'A SAP knowledge base article on unexpected team members points to the user and payroll-administrator data behind the list.'),
+  'The member list is derived from user and payroll-administrator data, so check the records behind it.'),
  ('What does passing the end-to-end learning sign-off in section 108 prove?',
   ['Only the learning case; it is not a production approval or certification', 'Production readiness for India', 'Statutory compliance', 'That SAP has approved the setup'], 0,
   'The workbook is learning material with fictional data and no tenant execution.'),
