@@ -88,6 +88,29 @@ def normalise(s):
     return s
 
 
+EDITION_WORDING = [
+    (' ECP Replication Workbook', ' ECP Workbook'), (' Replication Workbook', ' Payroll Workbook'),
+    ('Country replication \u00b7 living learning workbook', 'Country payroll \u00b7 living learning workbook'),
+    (' replication, made tangible', ' payroll, made tangible'),
+    ('SAP appendix \u00b7 Replication practice', 'Workbook Edition'),
+    (' Replication \u00b7 2026', ' Payroll \u00b7 2026'),
+    ('replication learning workbook. 108 guided sections including twelve replication experiments',
+     'Employee Central Payroll configuration workbook. 108 guided sections including twelve mapping experiments'),
+    ('This appendix replication workbook', 'This workbook'), ('This replication workbook', 'This workbook'),
+    (' \u00b7 appendix replication practice', ' \u00b7 country practice'), ('Replication learning path', 'Learning path'),
+    ('documented replication scope', 'documented scope'), ('an appendix replication entry', 'an appendix entry'),
+    ('country replication reference', 'country reference'), ('SAP country replication documentation', 'SAP country documentation'),
+    ('boundary of a replication entry', 'boundary of a country entry'), ('replication entry', 'mapping entry'), ('Replication entry', 'Mapping entry'),
+]
+
+
+def edition_wording(s):
+    """There is one edition (Workbook Edition): no page may call a country a replication workbook."""
+    for a, b in EDITION_WORDING:
+        s = s.replace(a, b)
+    return s
+
+
 ARC_CSS = ('.arc-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:12px;margin-bottom:18px}.arc-tile{border:1px solid var(--line);border-radius:14px;padding:14px;background:var(--surface);display:flex;flex-direction:column;gap:8px}.arc-tile.off{opacity:.62}.quizopt.correct{border-color:#2e8b57;background:#e9f6ee}.quizopt.wrong{border-color:#c0562f;background:#fdeee8}.table{width:100%;border-collapse:collapse}.table th,.table td{padding:8px 10px;border-bottom:1px solid var(--line);text-align:left;font-size:13px;vertical-align:top}')
 ARC_ENGINE = (Path(__file__).parent / 'playlab' / 'arcade_engine.js').read_text()
 PLAYER_CSS = ('@media(min-width:761px){header{grid-template-columns:auto auto auto minmax(160px,1fr) minmax(190px,240px) auto !important}}@media(max-width:760px){header{padding-top:58px !important}.focus{position:absolute;top:10px;left:12px}}.focus{flex:none;display:flex;align-items:center;gap:8px;margin-right:4px}.focus button{display:inline-flex;align-items:center;gap:6px;padding:7px 11px;font-size:13px;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--text);font-weight:600;cursor:pointer}'
@@ -232,6 +255,8 @@ def build_country(s, out_name):
     m = DATA_RE.search(s)
     s = s[:m.start(2)] + enc(d) + s[m.end(2):]
     s = normalise(s)
+    if X.app:
+        s = edition_wording(s)
     if not d['sources']:
         # replication editions keep no outside links: drop the "Read the country entry" button and guard the export
         s = s.replace("guide:D.sources[0].url}", "guide:(D.sources[0]||{}).url||''}")
