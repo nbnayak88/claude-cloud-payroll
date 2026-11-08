@@ -14,7 +14,7 @@ import copy, gzip, json, re, subprocess, sys
 ROOT = Path(__file__).resolve().parent
 REPO = ROOT.parent
 sys.path.insert(0, str(ROOT))
-import spec_pcc, spec_p2p, vendor_enrich as enrich, localize as L  # noqa: E402
+import spec_pcc, spec_p2p, vendor_enrich as enrich, localize as L, colorslab as CL  # noqa: E402
 
 import sys
 import tools_content as TC
@@ -218,6 +218,7 @@ def build_country(s, out_name):
         if x['n'] >= 55:
             x['tables'] = [t for t in x['tables'] if not t.get('_slaSynthetic')] + [enrich.fixture_table(x['n'], c, app=app)]
     c['version'] = '2026-11-09-%s-108' % X.code.lower()
+    d['profile']['themeName'] = 'ColorsLab-108 country gradient %s to %s' % (CL.palette(X.country)['start'], CL.palette(X.country)['end'])
     sanitize(d, mods)
     for i, x in enumerate(mods):
         if x['n'] >= 55:
@@ -237,7 +238,7 @@ def build_country(s, out_name):
         s = re.sub(r'<a class="btn" target="_blank" rel="noopener noreferrer" href="\'\+esc\(D\.sources\[0\]\.url\)\+\'">Read the country entry \u2197</a>', '', s)
         assert 'D.sources[0].url' not in s.replace("(D.sources[0]||{}).url", '')
     k = s.rindex('</style>')
-    s = s[:k] + ARC_CSS + PLAYER_CSS + s[k:]
+    s = s[:k] + ARC_CSS + PLAYER_CSS + CL.css(X.country) + s[k:]
     s = s.replace('<header>', '<header>' + PLAYER_HTML, 1)
     s = s.replace('</body>', '<script>' + PLAYER_JS + '</script></body>', 1)
     if X.country != 'India':

@@ -36,3 +36,10 @@ python3 tools/build_hub.py              # index.html
 The arcade follows the PlayLab 108 universal game standard (`nbnayak88/PlayLab-108`). All 108 templates are playable with the ECP content pack (12 families × 9; pack id `employee-central-payroll.<country>.v1`). Each game has a start screen, rules, scoring from 100, a finite end state, retry, an untimed accessible mode and a stored result record. Engine: `tools/playlab/`. Scenarios are fictional; a game score is not a certification.
 
 Automated checks used for the release: every game is auto-played to a win on three seeds, and every game is fuzzed with random clicks and input in untimed and timed modes. Puzzle data (crossword, logic grids, nonograms, binary grids, schedules, numbers) is verified solvable when the pack is built (`tools/playlab/arcade_pack2.py`). These are automated tests, not human playtesting.
+
+## Colour system (ColorsLab-108)
+
+Every workbook and the hub use the country's two-stop gradient from [nbnayak88/ColorsLab-108](https://github.com/nbnayak88/ColorsLab-108)
+(`tools/colorslab-108.json`, copied from commit 8681b04; `tools/colorslab.py` builds the theme CSS). Gradient direction is
+`linear-gradient(110deg, start 0%, end 100%)`, hero text is dark ink checked at 4.5:1 or better against both stops, buttons are solid blue
+`#1263B4`, and the palettes are a design proposal, not official flag colours. Turkey uses the Türkiye palette and Czech Republic uses Czechia.

@@ -1,0 +1,1913 @@
+{
+  "version": "1.0.0",
+  "updated": "2026-11-08",
+  "angle": 110,
+  "gradientStops": 2,
+  "style": "deep-bright to luminous-pastel",
+  "typography": "Comfortaa",
+  "mission": "Architecting experiences for a better world.",
+  "countryPalettes": [
+    {
+      "name": "Afghanistan",
+      "region": "Asia",
+      "start": "#E87E73",
+      "end": "#FFF0E7"
+    },
+    {
+      "name": "Albania",
+      "region": "Europe",
+      "start": "#E77F9D",
+      "end": "#FFEAF0"
+    },
+    {
+      "name": "Algeria",
+      "region": "Africa",
+      "start": "#49C69D",
+      "end": "#E4FAF0"
+    },
+    {
+      "name": "Andorra",
+      "region": "Europe",
+      "start": "#659FEA",
+      "end": "#E9F1FF"
+    },
+    {
+      "name": "Angola",
+      "region": "Africa",
+      "start": "#E99A76",
+      "end": "#FFF0E6"
+    },
+    {
+      "name": "Antigua and Barbuda",
+      "region": "Americas",
+      "start": "#E78A93",
+      "end": "#FFEAF0"
+    },
+    {
+      "name": "Argentina",
+      "region": "Americas",
+      "start": "#61B7E5",
+      "end": "#E3F6FF"
+    },
+    {
+      "name": "Armenia",
+      "region": "Asia",
+      "start": "#E89A83",
+      "end": "#FFF1E6"
+    },
+    {
+      "name": "Australia",
+      "region": "Oceania",
+      "start": "#5D96E4",
+      "end": "#E7F0FF"
+    },
+    {
+      "name": "Austria",
+      "region": "Europe",
+      "start": "#E88CA7",
+      "end": "#FFF0F5"
+    },
+    {
+      "name": "Azerbaijan",
+      "region": "Asia",
+      "start": "#53C5C5",
+      "end": "#E2FCFA"
+    },
+    {
+      "name": "Bahamas",
+      "region": "Americas",
+      "start": "#48C4C9",
+      "end": "#E0FBF8"
+    },
+    {
+      "name": "Bahrain",
+      "region": "Asia",
+      "start": "#E48A9C",
+      "end": "#FFF0F3"
+    },
+    {
+      "name": "Bangladesh",
+      "region": "Asia",
+      "start": "#43BF8F",
+      "end": "#E2F9EC"
+    },
+    {
+      "name": "Barbados",
+      "region": "Americas",
+      "start": "#62A3E3",
+      "end": "#E9F2FF"
+    },
+    {
+      "name": "Belarus",
+      "region": "Europe",
+      "start": "#E18192",
+      "end": "#FFF0F2"
+    },
+    {
+      "name": "Belgium",
+      "region": "Europe",
+      "start": "#E8BC62",
+      "end": "#FFF7DA"
+    },
+    {
+      "name": "Belize",
+      "region": "Americas",
+      "start": "#549FDC",
+      "end": "#E5F4FF"
+    },
+    {
+      "name": "Benin",
+      "region": "Africa",
+      "start": "#5DC78B",
+      "end": "#E7FADF"
+    },
+    {
+      "name": "Bhutan",
+      "region": "Asia",
+      "start": "#F0B05F",
+      "end": "#FFF4DB"
+    },
+    {
+      "name": "Bolivia",
+      "region": "Americas",
+      "start": "#E58A83",
+      "end": "#FFF1E5"
+    },
+    {
+      "name": "Bosnia and Herzegovina",
+      "region": "Europe",
+      "start": "#5C9DE6",
+      "end": "#E7F2FF"
+    },
+    {
+      "name": "Botswana",
+      "region": "Africa",
+      "start": "#5CACDA",
+      "end": "#E0F7FF"
+    },
+    {
+      "name": "Brazil",
+      "region": "Americas",
+      "start": "#57CB88",
+      "end": "#E7FAD9"
+    },
+    {
+      "name": "Brunei",
+      "region": "Asia",
+      "start": "#E8BD5E",
+      "end": "#FFF4D8"
+    },
+    {
+      "name": "Bulgaria",
+      "region": "Europe",
+      "start": "#58C59A",
+      "end": "#E6F9EC"
+    },
+    {
+      "name": "Burkina Faso",
+      "region": "Africa",
+      "start": "#E7A26F",
+      "end": "#FFF3DC"
+    },
+    {
+      "name": "Burundi",
+      "region": "Africa",
+      "start": "#64C48B",
+      "end": "#E8F9E3"
+    },
+    {
+      "name": "Cabo Verde",
+      "region": "Africa",
+      "start": "#5496D8",
+      "end": "#E2F1FF"
+    },
+    {
+      "name": "Cambodia",
+      "region": "Asia",
+      "start": "#698FDC",
+      "end": "#E9EEFF"
+    },
+    {
+      "name": "Cameroon",
+      "region": "Africa",
+      "start": "#62C68B",
+      "end": "#EDF9DF"
+    },
+    {
+      "name": "Canada",
+      "region": "Americas",
+      "start": "#E98397",
+      "end": "#FFEAF0"
+    },
+    {
+      "name": "Central African Republic",
+      "region": "Africa",
+      "start": "#65A4E8",
+      "end": "#E6F4FF"
+    },
+    {
+      "name": "Chad",
+      "region": "Africa",
+      "start": "#5F9BDF",
+      "end": "#E6F3FF"
+    },
+    {
+      "name": "Chile",
+      "region": "Americas",
+      "start": "#639BE5",
+      "end": "#E9F0FF"
+    },
+    {
+      "name": "China",
+      "region": "Asia",
+      "start": "#E88F83",
+      "end": "#FFF1E6"
+    },
+    {
+      "name": "Colombia",
+      "region": "Americas",
+      "start": "#EDC263",
+      "end": "#FFF6D8"
+    },
+    {
+      "name": "Comoros",
+      "region": "Africa",
+      "start": "#55C89E",
+      "end": "#E4F9EF"
+    },
+    {
+      "name": "Congo, Democratic Republic of the",
+      "region": "Africa",
+      "start": "#58AFDB",
+      "end": "#E2F8FF"
+    },
+    {
+      "name": "Congo, Republic of the",
+      "region": "Africa",
+      "start": "#5CC791",
+      "end": "#E8FAE3"
+    },
+    {
+      "name": "Costa Rica",
+      "region": "Americas",
+      "start": "#6AA3E8",
+      "end": "#E8F2FF"
+    },
+    {
+      "name": "Côte d’Ivoire",
+      "region": "Africa",
+      "start": "#F0AE78",
+      "end": "#FFF3DF"
+    },
+    {
+      "name": "Croatia",
+      "region": "Europe",
+      "start": "#E48D96",
+      "end": "#FFF0F3"
+    },
+    {
+      "name": "Cuba",
+      "region": "Americas",
+      "start": "#5D9DDE",
+      "end": "#E4F3FF"
+    },
+    {
+      "name": "Cyprus",
+      "region": "Asia",
+      "start": "#DBB674",
+      "end": "#FFF5E0"
+    },
+    {
+      "name": "Czechia",
+      "region": "Europe",
+      "start": "#6C99E7",
+      "end": "#EAF0FF"
+    },
+    {
+      "name": "Denmark",
+      "region": "Europe",
+      "start": "#E8849D",
+      "end": "#FFEAF3"
+    },
+    {
+      "name": "Djibouti",
+      "region": "Africa",
+      "start": "#60B5DE",
+      "end": "#E4F8FF"
+    },
+    {
+      "name": "Dominica",
+      "region": "Americas",
+      "start": "#55C290",
+      "end": "#E8F9E5"
+    },
+    {
+      "name": "Dominican Republic",
+      "region": "Americas",
+      "start": "#67A1E4",
+      "end": "#E7F2FF"
+    },
+    {
+      "name": "Ecuador",
+      "region": "Americas",
+      "start": "#E5BD62",
+      "end": "#FFF5D7"
+    },
+    {
+      "name": "Egypt",
+      "region": "Africa",
+      "start": "#E9947F",
+      "end": "#FFF0DF"
+    },
+    {
+      "name": "El Salvador",
+      "region": "Americas",
+      "start": "#68ABE8",
+      "end": "#E7F5FF"
+    },
+    {
+      "name": "Equatorial Guinea",
+      "region": "Africa",
+      "start": "#5CCB9A",
+      "end": "#E5F9F0"
+    },
+    {
+      "name": "Eritrea",
+      "region": "Africa",
+      "start": "#E88D87",
+      "end": "#FFF0E8"
+    },
+    {
+      "name": "Estonia",
+      "region": "Europe",
+      "start": "#5EA5E1",
+      "end": "#E8F5FF"
+    },
+    {
+      "name": "Eswatini",
+      "region": "Africa",
+      "start": "#7099E2",
+      "end": "#EAF0FF"
+    },
+    {
+      "name": "Ethiopia",
+      "region": "Africa",
+      "start": "#65C788",
+      "end": "#EEF9DF"
+    },
+    {
+      "name": "Fiji",
+      "region": "Oceania",
+      "start": "#60B5E4",
+      "end": "#E1F6FF"
+    },
+    {
+      "name": "Finland",
+      "region": "Europe",
+      "start": "#79A8E8",
+      "end": "#EDF5FF"
+    },
+    {
+      "name": "France",
+      "region": "Europe",
+      "start": "#6799E5",
+      "end": "#EAF0FF"
+    },
+    {
+      "name": "Gabon",
+      "region": "Africa",
+      "start": "#62C58F",
+      "end": "#E9F9E5"
+    },
+    {
+      "name": "Gambia",
+      "region": "Africa",
+      "start": "#E68F91",
+      "end": "#FFF0F0"
+    },
+    {
+      "name": "Georgia",
+      "region": "Asia",
+      "start": "#E98A9B",
+      "end": "#FFF0F4"
+    },
+    {
+      "name": "Germany",
+      "region": "Europe",
+      "start": "#E1B666",
+      "end": "#FFF5DF"
+    },
+    {
+      "name": "Ghana",
+      "region": "Africa",
+      "start": "#E8AB74",
+      "end": "#FFF3DF"
+    },
+    {
+      "name": "Greece",
+      "region": "Europe",
+      "start": "#62AAE5",
+      "end": "#E4F6FF"
+    },
+    {
+      "name": "Grenada",
+      "region": "Americas",
+      "start": "#E58A89",
+      "end": "#FFF1E7"
+    },
+    {
+      "name": "Guatemala",
+      "region": "Americas",
+      "start": "#61B5DE",
+      "end": "#E6F8FF"
+    },
+    {
+      "name": "Guinea",
+      "region": "Africa",
+      "start": "#E7A078",
+      "end": "#FFF4DC"
+    },
+    {
+      "name": "Guinea-Bissau",
+      "region": "Africa",
+      "start": "#E78C80",
+      "end": "#FFF0E5"
+    },
+    {
+      "name": "Guyana",
+      "region": "Americas",
+      "start": "#5DC994",
+      "end": "#EBF9DF"
+    },
+    {
+      "name": "Haiti",
+      "region": "Americas",
+      "start": "#6499DB",
+      "end": "#E7F2FF"
+    },
+    {
+      "name": "Holy See (Vatican City)",
+      "region": "Europe",
+      "start": "#E7C46F",
+      "end": "#FFF8E3"
+    },
+    {
+      "name": "Honduras",
+      "region": "Americas",
+      "start": "#64B8E0",
+      "end": "#E4F9FF"
+    },
+    {
+      "name": "Hong Kong",
+      "region": "Asia",
+      "start": "#E88AA2",
+      "end": "#FFF0F4"
+    },
+    {
+      "name": "Hungary",
+      "region": "Europe",
+      "start": "#E78B8A",
+      "end": "#FFF0F0"
+    },
+    {
+      "name": "Iceland",
+      "region": "Europe",
+      "start": "#5A9ADF",
+      "end": "#E5F3FF"
+    },
+    {
+      "name": "India",
+      "region": "Asia",
+      "start": "#F0A46F",
+      "end": "#FFF3DC"
+    },
+    {
+      "name": "Indonesia",
+      "region": "Asia",
+      "start": "#E98B9B",
+      "end": "#FFF0F4"
+    },
+    {
+      "name": "Iran",
+      "region": "Asia",
+      "start": "#55C38F",
+      "end": "#E8FAE8"
+    },
+    {
+      "name": "Iraq",
+      "region": "Asia",
+      "start": "#E88983",
+      "end": "#FFF0E6"
+    },
+    {
+      "name": "Ireland",
+      "region": "Europe",
+      "start": "#52BF90",
+      "end": "#E7F9E6"
+    },
+    {
+      "name": "Isle of Man",
+      "region": "Europe",
+      "start": "#779FE1",
+      "end": "#EEF3FF"
+    },
+    {
+      "name": "Israel",
+      "region": "Asia",
+      "start": "#63A7E8",
+      "end": "#E5F5FF"
+    },
+    {
+      "name": "Italy",
+      "region": "Europe",
+      "start": "#55C58F",
+      "end": "#E5FAE9"
+    },
+    {
+      "name": "Jamaica",
+      "region": "Americas",
+      "start": "#56C184",
+      "end": "#EAF8D9"
+    },
+    {
+      "name": "Japan",
+      "region": "Asia",
+      "start": "#E98B9D",
+      "end": "#FFEAF0"
+    },
+    {
+      "name": "Jordan",
+      "region": "Asia",
+      "start": "#E58C86",
+      "end": "#FFF0E8"
+    },
+    {
+      "name": "Kazakhstan",
+      "region": "Asia",
+      "start": "#52C2C8",
+      "end": "#E5FAF9"
+    },
+    {
+      "name": "Kenya",
+      "region": "Africa",
+      "start": "#E88E88",
+      "end": "#FFF1E4"
+    },
+    {
+      "name": "Kiribati",
+      "region": "Oceania",
+      "start": "#E99183",
+      "end": "#FFF0E7"
+    },
+    {
+      "name": "Kosovo",
+      "region": "Europe",
+      "start": "#7A98DF",
+      "end": "#EEF2FF"
+    },
+    {
+      "name": "Kuwait",
+      "region": "Asia",
+      "start": "#58C69B",
+      "end": "#E7F9E9"
+    },
+    {
+      "name": "Kyrgyzstan",
+      "region": "Asia",
+      "start": "#E99980",
+      "end": "#FFF0DB"
+    },
+    {
+      "name": "Laos",
+      "region": "Asia",
+      "start": "#DF8B9B",
+      "end": "#EDEFFF"
+    },
+    {
+      "name": "Latvia",
+      "region": "Europe",
+      "start": "#CA7999",
+      "end": "#FBEAF2"
+    },
+    {
+      "name": "Lebanon",
+      "region": "Asia",
+      "start": "#54C294",
+      "end": "#E8FAEB"
+    },
+    {
+      "name": "Lesotho",
+      "region": "Africa",
+      "start": "#6CA7E5",
+      "end": "#E6F4FF"
+    },
+    {
+      "name": "Liberia",
+      "region": "Africa",
+      "start": "#E88D93",
+      "end": "#FFEAF0"
+    },
+    {
+      "name": "Libya",
+      "region": "Africa",
+      "start": "#E98E87",
+      "end": "#EAF9E9"
+    },
+    {
+      "name": "Liechtenstein",
+      "region": "Europe",
+      "start": "#6698E3",
+      "end": "#E9F0FF"
+    },
+    {
+      "name": "Lithuania",
+      "region": "Europe",
+      "start": "#E8C161",
+      "end": "#FFF7DC"
+    },
+    {
+      "name": "Luxembourg",
+      "region": "Europe",
+      "start": "#6DA9E1",
+      "end": "#E9F7FF"
+    },
+    {
+      "name": "Madagascar",
+      "region": "Africa",
+      "start": "#E68B83",
+      "end": "#FFF0EB"
+    },
+    {
+      "name": "Malawi",
+      "region": "Africa",
+      "start": "#E58983",
+      "end": "#E8F8E6"
+    },
+    {
+      "name": "Malaysia",
+      "region": "Asia",
+      "start": "#609ADC",
+      "end": "#E8F1FF"
+    },
+    {
+      "name": "Maldives",
+      "region": "Asia",
+      "start": "#E98B8C",
+      "end": "#E9FAED"
+    },
+    {
+      "name": "Mali",
+      "region": "Africa",
+      "start": "#64C78E",
+      "end": "#F3F9D9"
+    },
+    {
+      "name": "Malta",
+      "region": "Europe",
+      "start": "#E98D9F",
+      "end": "#FFF0F3"
+    },
+    {
+      "name": "Marshall Islands",
+      "region": "Oceania",
+      "start": "#6099E3",
+      "end": "#E9F3FF"
+    },
+    {
+      "name": "Mauritania",
+      "region": "Africa",
+      "start": "#5BC88C",
+      "end": "#EAF9E5"
+    },
+    {
+      "name": "Mauritius",
+      "region": "Africa",
+      "start": "#E68C94",
+      "end": "#E9F1FF"
+    },
+    {
+      "name": "Mexico",
+      "region": "Americas",
+      "start": "#59C38E",
+      "end": "#EAF9E7"
+    },
+    {
+      "name": "Micronesia",
+      "region": "Oceania",
+      "start": "#6AB9DF",
+      "end": "#E5F8FF"
+    },
+    {
+      "name": "Moldova",
+      "region": "Europe",
+      "start": "#6699E5",
+      "end": "#EDF3FF"
+    },
+    {
+      "name": "Monaco",
+      "region": "Europe",
+      "start": "#E78C9A",
+      "end": "#FFF0F2"
+    },
+    {
+      "name": "Mongolia",
+      "region": "Asia",
+      "start": "#E98C8A",
+      "end": "#EEF0FF"
+    },
+    {
+      "name": "Montenegro",
+      "region": "Europe",
+      "start": "#E99288",
+      "end": "#FFF1E2"
+    },
+    {
+      "name": "Morocco",
+      "region": "Africa",
+      "start": "#E98B80",
+      "end": "#E7F9E8"
+    },
+    {
+      "name": "Mozambique",
+      "region": "Africa",
+      "start": "#57C590",
+      "end": "#EAF9E3"
+    },
+    {
+      "name": "Myanmar",
+      "region": "Asia",
+      "start": "#E8BC62",
+      "end": "#F3F9DC"
+    },
+    {
+      "name": "Namibia",
+      "region": "Africa",
+      "start": "#609BDC",
+      "end": "#E7F4FF"
+    },
+    {
+      "name": "Nauru",
+      "region": "Oceania",
+      "start": "#648BDC",
+      "end": "#E7F0FF"
+    },
+    {
+      "name": "Nepal",
+      "region": "Asia",
+      "start": "#E88E92",
+      "end": "#E9F2FF"
+    },
+    {
+      "name": "Netherlands",
+      "region": "Europe",
+      "start": "#6D99E4",
+      "end": "#EAF2FF"
+    },
+    {
+      "name": "New Zealand",
+      "region": "Oceania",
+      "start": "#6692E0",
+      "end": "#E8F0FF"
+    },
+    {
+      "name": "Nicaragua",
+      "region": "Americas",
+      "start": "#6FB3E6",
+      "end": "#E5F7FF"
+    },
+    {
+      "name": "Niger",
+      "region": "Africa",
+      "start": "#EEAB75",
+      "end": "#FFF2DD"
+    },
+    {
+      "name": "Nigeria",
+      "region": "Africa",
+      "start": "#58C898",
+      "end": "#E7FAEA"
+    },
+    {
+      "name": "North Korea",
+      "region": "Asia",
+      "start": "#E88C92",
+      "end": "#E8F0FF"
+    },
+    {
+      "name": "North Macedonia",
+      "region": "Europe",
+      "start": "#E99B7E",
+      "end": "#FFF3DF"
+    },
+    {
+      "name": "Norway",
+      "region": "Europe",
+      "start": "#6D99E3",
+      "end": "#EAF2FF"
+    },
+    {
+      "name": "Oman",
+      "region": "Asia",
+      "start": "#E48F83",
+      "end": "#FFF0E6"
+    },
+    {
+      "name": "Pakistan",
+      "region": "Asia",
+      "start": "#55C38A",
+      "end": "#E5F9EB"
+    },
+    {
+      "name": "Palau",
+      "region": "Oceania",
+      "start": "#62B5E3",
+      "end": "#E8F8FF"
+    },
+    {
+      "name": "Palestine",
+      "region": "Asia",
+      "start": "#E78B85",
+      "end": "#E7F9E8"
+    },
+    {
+      "name": "Panama",
+      "region": "Americas",
+      "start": "#659EE7",
+      "end": "#E7F2FF"
+    },
+    {
+      "name": "Papua New Guinea",
+      "region": "Oceania",
+      "start": "#E99781",
+      "end": "#FFF2E2"
+    },
+    {
+      "name": "Paraguay",
+      "region": "Americas",
+      "start": "#E88E94",
+      "end": "#E9F1FF"
+    },
+    {
+      "name": "Peru",
+      "region": "Americas",
+      "start": "#E78998",
+      "end": "#FFEAF1"
+    },
+    {
+      "name": "Philippines",
+      "region": "Asia",
+      "start": "#649BDF",
+      "end": "#E9F3FF"
+    },
+    {
+      "name": "Poland",
+      "region": "Europe",
+      "start": "#E98CA5",
+      "end": "#FFEAF3"
+    },
+    {
+      "name": "Portugal",
+      "region": "Europe",
+      "start": "#56C597",
+      "end": "#E9FAEA"
+    },
+    {
+      "name": "Puerto Rico",
+      "region": "Americas",
+      "start": "#E98D93",
+      "end": "#FFF0EF"
+    },
+    {
+      "name": "Qatar",
+      "region": "Asia",
+      "start": "#B97A9B",
+      "end": "#FCE9F2"
+    },
+    {
+      "name": "Romania",
+      "region": "Europe",
+      "start": "#619EE5",
+      "end": "#EAF2FF"
+    },
+    {
+      "name": "Russia",
+      "region": "Europe",
+      "start": "#6499E6",
+      "end": "#EDF4FF"
+    },
+    {
+      "name": "Rwanda",
+      "region": "Africa",
+      "start": "#64B7E0",
+      "end": "#E9F8FF"
+    },
+    {
+      "name": "Saint Kitts and Nevis",
+      "region": "Americas",
+      "start": "#5FC790",
+      "end": "#EBF9E4"
+    },
+    {
+      "name": "Saint Lucia",
+      "region": "Americas",
+      "start": "#5BB5E1",
+      "end": "#E7F6FF"
+    },
+    {
+      "name": "Saint Vincent and the Grenadines",
+      "region": "Americas",
+      "start": "#5BC49C",
+      "end": "#E9F9EB"
+    },
+    {
+      "name": "Samoa",
+      "region": "Oceania",
+      "start": "#E58E97",
+      "end": "#EAF1FF"
+    },
+    {
+      "name": "San Marino",
+      "region": "Europe",
+      "start": "#73B9E2",
+      "end": "#E7F9FF"
+    },
+    {
+      "name": "São Tomé and Príncipe",
+      "region": "Africa",
+      "start": "#5BC48B",
+      "end": "#EAF9E3"
+    },
+    {
+      "name": "Saudi Arabia",
+      "region": "Asia",
+      "start": "#4EC58E",
+      "end": "#E7FAEB"
+    },
+    {
+      "name": "Senegal",
+      "region": "Africa",
+      "start": "#61C78F",
+      "end": "#F2F9E0"
+    },
+    {
+      "name": "Serbia",
+      "region": "Europe",
+      "start": "#E48C98",
+      "end": "#EAF1FF"
+    },
+    {
+      "name": "Seychelles",
+      "region": "Africa",
+      "start": "#699CE6",
+      "end": "#EAF1FF"
+    },
+    {
+      "name": "Sierra Leone",
+      "region": "Africa",
+      "start": "#5BC99A",
+      "end": "#E8F9ED"
+    },
+    {
+      "name": "Singapore",
+      "region": "Asia",
+      "start": "#E98AA1",
+      "end": "#FFF0F3"
+    },
+    {
+      "name": "Slovakia",
+      "region": "Europe",
+      "start": "#6799E7",
+      "end": "#EDF3FF"
+    },
+    {
+      "name": "Slovenia",
+      "region": "Europe",
+      "start": "#6BA0E3",
+      "end": "#E8F3FF"
+    },
+    {
+      "name": "Solomon Islands",
+      "region": "Oceania",
+      "start": "#5DA7E1",
+      "end": "#E6F8ED"
+    },
+    {
+      "name": "Somalia",
+      "region": "Africa",
+      "start": "#65B9E3",
+      "end": "#E5F8FF"
+    },
+    {
+      "name": "South Africa",
+      "region": "Africa",
+      "start": "#54C28B",
+      "end": "#EBF9E3"
+    },
+    {
+      "name": "South Korea",
+      "region": "Asia",
+      "start": "#E58E95",
+      "end": "#E9F1FF"
+    },
+    {
+      "name": "South Sudan",
+      "region": "Africa",
+      "start": "#6C9FE1",
+      "end": "#E8F8EC"
+    },
+    {
+      "name": "Spain",
+      "region": "Europe",
+      "start": "#E99A76",
+      "end": "#FFF4DC"
+    },
+    {
+      "name": "Sri Lanka",
+      "region": "Asia",
+      "start": "#C88D87",
+      "end": "#FFF0DA"
+    },
+    {
+      "name": "Sudan",
+      "region": "Africa",
+      "start": "#E88E83",
+      "end": "#E9F9EA"
+    },
+    {
+      "name": "Suriname",
+      "region": "Americas",
+      "start": "#5AC88A",
+      "end": "#E9FAE3"
+    },
+    {
+      "name": "Sweden",
+      "region": "Europe",
+      "start": "#63A2E5",
+      "end": "#E9F5FF"
+    },
+    {
+      "name": "Switzerland",
+      "region": "Europe",
+      "start": "#E988A1",
+      "end": "#FFF0F3"
+    },
+    {
+      "name": "Syria",
+      "region": "Asia",
+      "start": "#55BF91",
+      "end": "#E8F8EB"
+    },
+    {
+      "name": "Taiwan",
+      "region": "Asia",
+      "start": "#E889A1",
+      "end": "#FFF0F3"
+    },
+    {
+      "name": "Tajikistan",
+      "region": "Asia",
+      "start": "#E98C82",
+      "end": "#E9F8E8"
+    },
+    {
+      "name": "Tanzania",
+      "region": "Africa",
+      "start": "#56C79A",
+      "end": "#E8F8FF"
+    },
+    {
+      "name": "Thailand",
+      "region": "Asia",
+      "start": "#E48F9E",
+      "end": "#EAF0FF"
+    },
+    {
+      "name": "Timor-Leste",
+      "region": "Asia",
+      "start": "#EAA078",
+      "end": "#FFF1DE"
+    },
+    {
+      "name": "Togo",
+      "region": "Africa",
+      "start": "#5DC88F",
+      "end": "#F0F9DB"
+    },
+    {
+      "name": "Tonga",
+      "region": "Oceania",
+      "start": "#E58C9A",
+      "end": "#FFEAF0"
+    },
+    {
+      "name": "Trinidad and Tobago",
+      "region": "Americas",
+      "start": "#E78F8B",
+      "end": "#FFF0E5"
+    },
+    {
+      "name": "Tunisia",
+      "region": "Africa",
+      "start": "#E98B9D",
+      "end": "#FFF0F2"
+    },
+    {
+      "name": "Türkiye",
+      "region": "Asia",
+      "start": "#E78C9B",
+      "end": "#FFF0F1"
+    },
+    {
+      "name": "Turkmenistan",
+      "region": "Asia",
+      "start": "#55C795",
+      "end": "#E9F9EC"
+    },
+    {
+      "name": "Tuvalu",
+      "region": "Oceania",
+      "start": "#6CB4DF",
+      "end": "#E6F8FF"
+    },
+    {
+      "name": "Uganda",
+      "region": "Africa",
+      "start": "#E1B465",
+      "end": "#FFF5DA"
+    },
+    {
+      "name": "Ukraine",
+      "region": "Europe",
+      "start": "#679DE7",
+      "end": "#FFF2D8"
+    },
+    {
+      "name": "United Arab Emirates",
+      "region": "Asia",
+      "start": "#E9937C",
+      "end": "#FFF0DF"
+    },
+    {
+      "name": "United Kingdom",
+      "region": "Europe",
+      "start": "#638FDF",
+      "end": "#EDF1FF"
+    },
+    {
+      "name": "United States",
+      "region": "Americas",
+      "start": "#649AE7",
+      "end": "#E9F1FF"
+    },
+    {
+      "name": "Uruguay",
+      "region": "Americas",
+      "start": "#70A9E5",
+      "end": "#EAF6FF"
+    },
+    {
+      "name": "Uzbekistan",
+      "region": "Asia",
+      "start": "#59BBD8",
+      "end": "#E6FAFF"
+    },
+    {
+      "name": "Vanuatu",
+      "region": "Oceania",
+      "start": "#E99381",
+      "end": "#EAF9E8"
+    },
+    {
+      "name": "Venezuela",
+      "region": "Americas",
+      "start": "#E8C064",
+      "end": "#FFF4D8"
+    },
+    {
+      "name": "Vietnam",
+      "region": "Asia",
+      "start": "#E99B78",
+      "end": "#FFF1DD"
+    },
+    {
+      "name": "Yemen",
+      "region": "Asia",
+      "start": "#E98D83",
+      "end": "#FFF0E7"
+    },
+    {
+      "name": "Zambia",
+      "region": "Africa",
+      "start": "#58C895",
+      "end": "#EAF9E1"
+    },
+    {
+      "name": "Zimbabwe",
+      "region": "Africa",
+      "start": "#6BC786",
+      "end": "#F1F9D9"
+    }
+  ],
+  "studioPalettes": [
+    {
+      "id": 1,
+      "name": "Ocean & Sapphire 1",
+      "family": "Ocean & Sapphire",
+      "start": "#329ED8",
+      "end": "#D7F1FF"
+    },
+    {
+      "id": 2,
+      "name": "Ocean & Sapphire 2",
+      "family": "Ocean & Sapphire",
+      "start": "#438DE9",
+      "end": "#DCEBFF"
+    },
+    {
+      "id": 3,
+      "name": "Ocean & Sapphire 3",
+      "family": "Ocean & Sapphire",
+      "start": "#299FC6",
+      "end": "#D6F7FF"
+    },
+    {
+      "id": 4,
+      "name": "Ocean & Sapphire 4",
+      "family": "Ocean & Sapphire",
+      "start": "#527FE5",
+      "end": "#E2E9FF"
+    },
+    {
+      "id": 5,
+      "name": "Ocean & Sapphire 5",
+      "family": "Ocean & Sapphire",
+      "start": "#3CADD9",
+      "end": "#DDF5FF"
+    },
+    {
+      "id": 6,
+      "name": "Ocean & Sapphire 6",
+      "family": "Ocean & Sapphire",
+      "start": "#568FEF",
+      "end": "#E5F0FF"
+    },
+    {
+      "id": 7,
+      "name": "Ocean & Sapphire 7",
+      "family": "Ocean & Sapphire",
+      "start": "#3395BF",
+      "end": "#E0F7FF"
+    },
+    {
+      "id": 8,
+      "name": "Ocean & Sapphire 8",
+      "family": "Ocean & Sapphire",
+      "start": "#4CACEB",
+      "end": "#E2F4FF"
+    },
+    {
+      "id": 9,
+      "name": "Ocean & Sapphire 9",
+      "family": "Ocean & Sapphire",
+      "start": "#369CCF",
+      "end": "#D6EEFF"
+    },
+    {
+      "id": 10,
+      "name": "Ocean & Sapphire 10",
+      "family": "Ocean & Sapphire",
+      "start": "#5686D9",
+      "end": "#E1F5FF"
+    },
+    {
+      "id": 11,
+      "name": "Turquoise & Aqua 1",
+      "family": "Turquoise & Aqua",
+      "start": "#37C5C8",
+      "end": "#D9FAFA"
+    },
+    {
+      "id": 12,
+      "name": "Turquoise & Aqua 2",
+      "family": "Turquoise & Aqua",
+      "start": "#31BFD7",
+      "end": "#E0F9FF"
+    },
+    {
+      "id": 13,
+      "name": "Turquoise & Aqua 3",
+      "family": "Turquoise & Aqua",
+      "start": "#35C8B4",
+      "end": "#DDFBF2"
+    },
+    {
+      "id": 14,
+      "name": "Turquoise & Aqua 4",
+      "family": "Turquoise & Aqua",
+      "start": "#3CC7E5",
+      "end": "#DDF7FF"
+    },
+    {
+      "id": 15,
+      "name": "Turquoise & Aqua 5",
+      "family": "Turquoise & Aqua",
+      "start": "#48C9D3",
+      "end": "#E2FAFB"
+    },
+    {
+      "id": 16,
+      "name": "Turquoise & Aqua 6",
+      "family": "Turquoise & Aqua",
+      "start": "#3FCABF",
+      "end": "#E2FFF8"
+    },
+    {
+      "id": 17,
+      "name": "Turquoise & Aqua 7",
+      "family": "Turquoise & Aqua",
+      "start": "#46B8D6",
+      "end": "#E5FAFF"
+    },
+    {
+      "id": 18,
+      "name": "Turquoise & Aqua 8",
+      "family": "Turquoise & Aqua",
+      "start": "#32BDAF",
+      "end": "#DDF8F3"
+    },
+    {
+      "id": 19,
+      "name": "Turquoise & Aqua 9",
+      "family": "Turquoise & Aqua",
+      "start": "#46C6E1",
+      "end": "#E5FAFF"
+    },
+    {
+      "id": 20,
+      "name": "Turquoise & Aqua 10",
+      "family": "Turquoise & Aqua",
+      "start": "#4ACFC8",
+      "end": "#E2FCF7"
+    },
+    {
+      "id": 21,
+      "name": "Emerald & Jade 1",
+      "family": "Emerald & Jade",
+      "start": "#42C58D",
+      "end": "#E0FAEC"
+    },
+    {
+      "id": 22,
+      "name": "Emerald & Jade 2",
+      "family": "Emerald & Jade",
+      "start": "#36BDA1",
+      "end": "#DDF9EE"
+    },
+    {
+      "id": 23,
+      "name": "Emerald & Jade 3",
+      "family": "Emerald & Jade",
+      "start": "#53C78E",
+      "end": "#E6F9E8"
+    },
+    {
+      "id": 24,
+      "name": "Emerald & Jade 4",
+      "family": "Emerald & Jade",
+      "start": "#3CBF96",
+      "end": "#E2FBF0"
+    },
+    {
+      "id": 25,
+      "name": "Emerald & Jade 5",
+      "family": "Emerald & Jade",
+      "start": "#5ACA9A",
+      "end": "#E5FFF0"
+    },
+    {
+      "id": 26,
+      "name": "Emerald & Jade 6",
+      "family": "Emerald & Jade",
+      "start": "#48BE80",
+      "end": "#E4F8E4"
+    },
+    {
+      "id": 27,
+      "name": "Emerald & Jade 7",
+      "family": "Emerald & Jade",
+      "start": "#36C2A7",
+      "end": "#DDF9F2"
+    },
+    {
+      "id": 28,
+      "name": "Emerald & Jade 8",
+      "family": "Emerald & Jade",
+      "start": "#55CC9C",
+      "end": "#E8FFF3"
+    },
+    {
+      "id": 29,
+      "name": "Emerald & Jade 9",
+      "family": "Emerald & Jade",
+      "start": "#4FC58C",
+      "end": "#E9F9E5"
+    },
+    {
+      "id": 30,
+      "name": "Emerald & Jade 10",
+      "family": "Emerald & Jade",
+      "start": "#40CBA5",
+      "end": "#E3FCF1"
+    },
+    {
+      "id": 31,
+      "name": "Lavender & Indigo 1",
+      "family": "Lavender & Indigo",
+      "start": "#9576E7",
+      "end": "#EFE7FF"
+    },
+    {
+      "id": 32,
+      "name": "Lavender & Indigo 2",
+      "family": "Lavender & Indigo",
+      "start": "#7888E9",
+      "end": "#E8EDFF"
+    },
+    {
+      "id": 33,
+      "name": "Lavender & Indigo 3",
+      "family": "Lavender & Indigo",
+      "start": "#A17CEB",
+      "end": "#F1E8FF"
+    },
+    {
+      "id": 34,
+      "name": "Lavender & Indigo 4",
+      "family": "Lavender & Indigo",
+      "start": "#8296EC",
+      "end": "#E8EFFF"
+    },
+    {
+      "id": 35,
+      "name": "Lavender & Indigo 5",
+      "family": "Lavender & Indigo",
+      "start": "#A38AEF",
+      "end": "#F0E9FF"
+    },
+    {
+      "id": 36,
+      "name": "Lavender & Indigo 6",
+      "family": "Lavender & Indigo",
+      "start": "#A27FE0",
+      "end": "#F2EAFF"
+    },
+    {
+      "id": 37,
+      "name": "Lavender & Indigo 7",
+      "family": "Lavender & Indigo",
+      "start": "#7983E1",
+      "end": "#EBEDFF"
+    },
+    {
+      "id": 38,
+      "name": "Lavender & Indigo 8",
+      "family": "Lavender & Indigo",
+      "start": "#AE8AE9",
+      "end": "#F5EAFF"
+    },
+    {
+      "id": 39,
+      "name": "Lavender & Indigo 9",
+      "family": "Lavender & Indigo",
+      "start": "#8B8CEB",
+      "end": "#EEEFFF"
+    },
+    {
+      "id": 40,
+      "name": "Lavender & Indigo 10",
+      "family": "Lavender & Indigo",
+      "start": "#A57DE4",
+      "end": "#F5ECFF"
+    },
+    {
+      "id": 41,
+      "name": "Rose & Magenta 1",
+      "family": "Rose & Magenta",
+      "start": "#E57CA8",
+      "end": "#FFE5F0"
+    },
+    {
+      "id": 42,
+      "name": "Rose & Magenta 2",
+      "family": "Rose & Magenta",
+      "start": "#D978B1",
+      "end": "#FCE7F4"
+    },
+    {
+      "id": 43,
+      "name": "Rose & Magenta 3",
+      "family": "Rose & Magenta",
+      "start": "#E889C7",
+      "end": "#FFE8F6"
+    },
+    {
+      "id": 44,
+      "name": "Rose & Magenta 4",
+      "family": "Rose & Magenta",
+      "start": "#E77F9D",
+      "end": "#FFE8ED"
+    },
+    {
+      "id": 45,
+      "name": "Rose & Magenta 5",
+      "family": "Rose & Magenta",
+      "start": "#D881C4",
+      "end": "#F8E7FA"
+    },
+    {
+      "id": 46,
+      "name": "Rose & Magenta 6",
+      "family": "Rose & Magenta",
+      "start": "#EF8CAC",
+      "end": "#FFE9F1"
+    },
+    {
+      "id": 47,
+      "name": "Rose & Magenta 7",
+      "family": "Rose & Magenta",
+      "start": "#D779A1",
+      "end": "#FCE7EF"
+    },
+    {
+      "id": 48,
+      "name": "Rose & Magenta 8",
+      "family": "Rose & Magenta",
+      "start": "#E17EC3",
+      "end": "#FCE8FA"
+    },
+    {
+      "id": 49,
+      "name": "Rose & Magenta 9",
+      "family": "Rose & Magenta",
+      "start": "#E78FB6",
+      "end": "#FFEAF4"
+    },
+    {
+      "id": 50,
+      "name": "Rose & Magenta 10",
+      "family": "Rose & Magenta",
+      "start": "#E98A9F",
+      "end": "#FFF0F1"
+    },
+    {
+      "id": 51,
+      "name": "Coral & Peach 1",
+      "family": "Coral & Peach",
+      "start": "#F18A76",
+      "end": "#FFF0E6"
+    },
+    {
+      "id": 52,
+      "name": "Coral & Peach 2",
+      "family": "Coral & Peach",
+      "start": "#F3A05F",
+      "end": "#FFF1DB"
+    },
+    {
+      "id": 53,
+      "name": "Coral & Peach 3",
+      "family": "Coral & Peach",
+      "start": "#EE9B7C",
+      "end": "#FFF0E2"
+    },
+    {
+      "id": 54,
+      "name": "Coral & Peach 4",
+      "family": "Coral & Peach",
+      "start": "#EF8F83",
+      "end": "#FFEAE5"
+    },
+    {
+      "id": 55,
+      "name": "Coral & Peach 5",
+      "family": "Coral & Peach",
+      "start": "#EFA36F",
+      "end": "#FFF2DF"
+    },
+    {
+      "id": 56,
+      "name": "Coral & Peach 6",
+      "family": "Coral & Peach",
+      "start": "#F29C70",
+      "end": "#FFF0E0"
+    },
+    {
+      "id": 57,
+      "name": "Coral & Peach 7",
+      "family": "Coral & Peach",
+      "start": "#EC817D",
+      "end": "#FFE9E9"
+    },
+    {
+      "id": 58,
+      "name": "Coral & Peach 8",
+      "family": "Coral & Peach",
+      "start": "#F0A07D",
+      "end": "#FFF2E9"
+    },
+    {
+      "id": 59,
+      "name": "Coral & Peach 9",
+      "family": "Coral & Peach",
+      "start": "#DD9178",
+      "end": "#FCEDE5"
+    },
+    {
+      "id": 60,
+      "name": "Coral & Peach 10",
+      "family": "Coral & Peach",
+      "start": "#F3AA88",
+      "end": "#FFF1E8"
+    },
+    {
+      "id": 61,
+      "name": "Gold & Amber 1",
+      "family": "Gold & Amber",
+      "start": "#E9B54B",
+      "end": "#FFF3D1"
+    },
+    {
+      "id": 62,
+      "name": "Gold & Amber 2",
+      "family": "Gold & Amber",
+      "start": "#E9AD56",
+      "end": "#FFF0D7"
+    },
+    {
+      "id": 63,
+      "name": "Gold & Amber 3",
+      "family": "Gold & Amber",
+      "start": "#E6B85E",
+      "end": "#FFF5DC"
+    },
+    {
+      "id": 64,
+      "name": "Gold & Amber 4",
+      "family": "Gold & Amber",
+      "start": "#EDB54F",
+      "end": "#FFF5D9"
+    },
+    {
+      "id": 65,
+      "name": "Gold & Amber 5",
+      "family": "Gold & Amber",
+      "start": "#E8C052",
+      "end": "#FFF9DA"
+    },
+    {
+      "id": 66,
+      "name": "Gold & Amber 6",
+      "family": "Gold & Amber",
+      "start": "#E9AE62",
+      "end": "#FFF2D8"
+    },
+    {
+      "id": 67,
+      "name": "Gold & Amber 7",
+      "family": "Gold & Amber",
+      "start": "#DBB46C",
+      "end": "#FFF6E4"
+    },
+    {
+      "id": 68,
+      "name": "Gold & Amber 8",
+      "family": "Gold & Amber",
+      "start": "#E8BD58",
+      "end": "#FFF8D6"
+    },
+    {
+      "id": 69,
+      "name": "Gold & Amber 9",
+      "family": "Gold & Amber",
+      "start": "#EFC061",
+      "end": "#FFF6DE"
+    },
+    {
+      "id": 70,
+      "name": "Gold & Amber 10",
+      "family": "Gold & Amber",
+      "start": "#E4AE4D",
+      "end": "#FFF3D9"
+    },
+    {
+      "id": 71,
+      "name": "Lime & Green 1",
+      "family": "Lime & Green",
+      "start": "#A3D65A",
+      "end": "#F0FBD9"
+    },
+    {
+      "id": 72,
+      "name": "Lime & Green 2",
+      "family": "Lime & Green",
+      "start": "#B5D85C",
+      "end": "#F6FBDD"
+    },
+    {
+      "id": 73,
+      "name": "Lime & Green 3",
+      "family": "Lime & Green",
+      "start": "#8FD36E",
+      "end": "#E9FADD"
+    },
+    {
+      "id": 74,
+      "name": "Lime & Green 4",
+      "family": "Lime & Green",
+      "start": "#A7D779",
+      "end": "#F1FAE3"
+    },
+    {
+      "id": 75,
+      "name": "Lime & Green 5",
+      "family": "Lime & Green",
+      "start": "#9BD45E",
+      "end": "#EBFBD7"
+    },
+    {
+      "id": 76,
+      "name": "Lime & Green 6",
+      "family": "Lime & Green",
+      "start": "#85CD78",
+      "end": "#E8FBE2"
+    },
+    {
+      "id": 77,
+      "name": "Lime & Green 7",
+      "family": "Lime & Green",
+      "start": "#B6D96C",
+      "end": "#F7FBDD"
+    },
+    {
+      "id": 78,
+      "name": "Lime & Green 8",
+      "family": "Lime & Green",
+      "start": "#96D184",
+      "end": "#E8FAE4"
+    },
+    {
+      "id": 79,
+      "name": "Lime & Green 9",
+      "family": "Lime & Green",
+      "start": "#ACD65B",
+      "end": "#F4FBDD"
+    },
+    {
+      "id": 80,
+      "name": "Lime & Green 10",
+      "family": "Lime & Green",
+      "start": "#A2D975",
+      "end": "#EDFAE2"
+    },
+    {
+      "id": 81,
+      "name": "Hybrid Aurora 1",
+      "family": "Hybrid Aurora",
+      "start": "#58B5DB",
+      "end": "#EAE7FF"
+    },
+    {
+      "id": 82,
+      "name": "Hybrid Aurora 2",
+      "family": "Hybrid Aurora",
+      "start": "#4BCDA9",
+      "end": "#E4F1FF"
+    },
+    {
+      "id": 83,
+      "name": "Hybrid Aurora 3",
+      "family": "Hybrid Aurora",
+      "start": "#F08E86",
+      "end": "#E5F7FF"
+    },
+    {
+      "id": 84,
+      "name": "Hybrid Aurora 4",
+      "family": "Hybrid Aurora",
+      "start": "#9987E8",
+      "end": "#DFFAF7"
+    },
+    {
+      "id": 85,
+      "name": "Hybrid Aurora 5",
+      "family": "Hybrid Aurora",
+      "start": "#F1A07F",
+      "end": "#F0E8FF"
+    },
+    {
+      "id": 86,
+      "name": "Hybrid Aurora 6",
+      "family": "Hybrid Aurora",
+      "start": "#E78AB6",
+      "end": "#E2F5FF"
+    },
+    {
+      "id": 87,
+      "name": "Hybrid Aurora 7",
+      "family": "Hybrid Aurora",
+      "start": "#65A8E7",
+      "end": "#E9FADD"
+    },
+    {
+      "id": 88,
+      "name": "Hybrid Aurora 8",
+      "family": "Hybrid Aurora",
+      "start": "#ECA16D",
+      "end": "#E2FBEE"
+    },
+    {
+      "id": 89,
+      "name": "Hybrid Aurora 9",
+      "family": "Hybrid Aurora",
+      "start": "#B18AE4",
+      "end": "#E1F6FF"
+    },
+    {
+      "id": 90,
+      "name": "Hybrid Aurora 10",
+      "family": "Hybrid Aurora",
+      "start": "#4FC5A3",
+      "end": "#EEE9FF"
+    },
+    {
+      "id": 91,
+      "name": "Premium Enterprise 1",
+      "family": "Premium Enterprise",
+      "start": "#5A9DDC",
+      "end": "#E5F3FF"
+    },
+    {
+      "id": 92,
+      "name": "Premium Enterprise 2",
+      "family": "Premium Enterprise",
+      "start": "#43BDB8",
+      "end": "#E2F9F6"
+    },
+    {
+      "id": 93,
+      "name": "Premium Enterprise 3",
+      "family": "Premium Enterprise",
+      "start": "#9382DF",
+      "end": "#F0EAFF"
+    },
+    {
+      "id": 94,
+      "name": "Premium Enterprise 4",
+      "family": "Premium Enterprise",
+      "start": "#529DD7",
+      "end": "#E2F6FF"
+    },
+    {
+      "id": 95,
+      "name": "Premium Enterprise 5",
+      "family": "Premium Enterprise",
+      "start": "#52BF93",
+      "end": "#E4F9ED"
+    },
+    {
+      "id": 96,
+      "name": "Premium Enterprise 6",
+      "family": "Premium Enterprise",
+      "start": "#B08ADE",
+      "end": "#F5EBFF"
+    },
+    {
+      "id": 97,
+      "name": "Premium Enterprise 7",
+      "family": "Premium Enterprise",
+      "start": "#EB947E",
+      "end": "#FFF0E8"
+    },
+    {
+      "id": 98,
+      "name": "Premium Enterprise 8",
+      "family": "Premium Enterprise",
+      "start": "#DFB45C",
+      "end": "#FFF6DD"
+    },
+    {
+      "id": 99,
+      "name": "Premium Enterprise 9",
+      "family": "Premium Enterprise",
+      "start": "#45B9D8",
+      "end": "#E2F9FF"
+    },
+    {
+      "id": 100,
+      "name": "Premium Enterprise 10",
+      "family": "Premium Enterprise",
+      "start": "#7C8DE0",
+      "end": "#E9EEFF"
+    }
+  ]
+}
