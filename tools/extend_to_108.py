@@ -111,6 +111,56 @@ def edition_wording(s):
     return s
 
 
+GUIDE_RULES = [
+    (r'Not listed in the SAP 2H 2026 country-specifics document; learning design from public authority pages', 'Learning design from public authority pages'),  # the 42 appendix-based editions keep no references to the vendor guide, its section numbers or page numbers
+    (r'<span class="status source">SAP 2H 2026 \u00b7 \'\+esc\(D\.coverage\.section\)\+\'</span>', '<span class="status source">Country mapping topics</span>'),
+    (r"header\('Guide evidence',P\.name\+' \u00b7 documented scope','SAP 2H 2026, '\+D\.coverage\.section\+', country entry at page '\+D\.coverage\.page\+'\.'\)",
+     "header('Evidence desk',P.name+' \u00b7 documented scope','Country mapping topics and the evidence boundary.')"),
+    (r'"section":"[\d.]+","page":\d+,"guideVersion":"[^"]*","guideDate":"[^"]*"', '"section":"country topics","page":0,"guideVersion":"","guideDate":""'),
+    (r'SAP 2H 2026 \u00b7 chapter [\d.]+', 'Country mapping topics'),
+    (r'SAP 2H 2026, [\d.]+; open the pinned source before using its field definitions', 'Country mapping topics; confirm field definitions in your own release before use'),
+    (r'\["Guide entry","[\d.]+ \u00b7 page \d+"\]', '["Topic area","Country mapping"]'),
+    (r'SAP guide section [\d.]+', 'the country mapping topic'),
+    (r'"Pinned edition","SAP 2H 2026"', '"Content version","November 2026"'),
+    (r'pinned SAP 2H 2026 appendix evidence', 'dated country evidence'),
+    (r'Appendix: Additional Replication Information\. This is not', 'Additional mapping information. This is not'),
+    (r'\bSAP 2H 2026\b', 'the current release'),
+    (r'"guideCoverage":"appendix"', '"coverage":"country topics"'),
+    (r'\["GUIDE",', '["TOPIC",'),
+    (r"guide:\(D\.sources\[0\]\|\|\{\}\)\.url\|\|''", "reference:''"),
+]
+GUIDE_TEXT = [
+    ('Open guide evidence', 'Open evidence desk'), ('Guide evidence', 'Evidence desk'), ('Guide coverage', 'Coverage'),
+    ('Mapping experiment lab', 'Mapping practice lab'),
+    ('Record the SAP guide edition and section.', 'Record the content version and topic.'),
+    ('the relevant SAP guide topic', 'the relevant country topic'), ('The cited guide scope', 'The stated scope'),
+    ('Guide scope', 'Workbook scope'), ('Guide boundary', 'Scope boundary'), ('guide boundary', 'scope boundary'),
+    ('The precise boundary of the cited guide', 'The precise boundary of the stated scope'),
+    ('the cited appendix entry', 'the cited country entry'), ('an appendix entry', 'a country entry'),
+    ('this appendix mapping scope', 'this mapping scope'),
+    ('next confirmed guide release', 'next confirmed documentation release'),
+    ('guide edition and tenant version', 'content version and tenant version'), ('guide edition', 'content version'),
+    ('document edition', 'content version'),
+    ('Published guide / authority reference', 'Published documentation / authority reference'),
+    ('The guide link identifies', 'The reference identifies'),
+    ('guide to case decision', 'documentation to case decision'),
+    ('from the linked guide', 'from the linked documentation'), ('in the country guide', 'in the country documentation'),
+    ('the country guide', 'the country documentation'), ('listed in the guide', 'listed in the documentation'),
+    ('from the guide', 'from the documentation'), ('in the guide', 'in the documentation'),
+    ('in current SAP guidance', 'in current SAP documentation'), ('in the cited guide', 'in the cited documentation'),
+    ('the guide', 'the documentation'),
+]
+
+
+def guide_cleanup(s):
+    import re as _re
+    for a, b in GUIDE_RULES:
+        s = _re.sub(a, b, s)
+    for a, b in GUIDE_TEXT:
+        s = s.replace(a, b)
+    return s
+
+
 ARC_CSS = ('.arc-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:12px;margin-bottom:18px}.arc-tile{border:1px solid var(--line);border-radius:14px;padding:14px;background:var(--surface);display:flex;flex-direction:column;gap:8px}.arc-tile.off{opacity:.62}.quizopt.correct{border-color:#2e8b57;background:#e9f6ee}.quizopt.wrong{border-color:#c0562f;background:#fdeee8}.table{width:100%;border-collapse:collapse}.table th,.table td{padding:8px 10px;border-bottom:1px solid var(--line);text-align:left;font-size:13px;vertical-align:top}')
 ARC_ENGINE = (Path(__file__).parent / 'playlab' / 'arcade_engine.js').read_text()
 PLAYER_CSS = ('@media(min-width:761px){header{grid-template-columns:auto auto auto minmax(160px,1fr) minmax(190px,240px) auto !important}}@media(max-width:760px){header{padding-top:58px !important}.focus{position:absolute;top:10px;left:12px}}.focus{flex:none;display:flex;align-items:center;gap:8px;margin-right:4px}.focus button{display:inline-flex;align-items:center;gap:6px;padding:7px 11px;font-size:13px;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--text);font-weight:600;cursor:pointer}'
@@ -256,10 +306,12 @@ def build_country(s, out_name):
     s = s[:m.start(2)] + enc(d) + s[m.end(2):]
     s = normalise(s)
     if X.app:
-        s = edition_wording(s)
+        s = guide_cleanup(edition_wording(s))
+    elif X.country == 'Zambia':
+        s = guide_cleanup(s)
     if not d['sources']:
         # replication editions keep no outside links: drop the "Read the country entry" button and guard the export
-        s = s.replace("guide:D.sources[0].url}", "guide:(D.sources[0]||{}).url||''}")
+        s = s.replace("guide:D.sources[0].url}", "reference:''}")
         s = re.sub(r'<a class="btn" target="_blank" rel="noopener noreferrer" href="\'\+esc\(D\.sources\[0\]\.url\)\+\'">Read the country entry \u2197</a>', '', s)
         assert 'D.sources[0].url' not in s.replace("(D.sources[0]||{}).url", '')
     k = s.rindex('</style>')
