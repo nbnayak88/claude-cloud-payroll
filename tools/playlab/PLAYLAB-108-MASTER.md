@@ -1,6 +1,6 @@
 # PlayLab 108 — Universal Game Standards
 
-**Version:** 1.0.0 · **Status:** specification only · **Templates:** 108 · **Game length:** 5–30 minutes
+**Version:** 1.0.0 · **Status:** specification; all 108 are implemented and playable in the Essentials Edition (Gold Edition) workbooks · **Templates:** 108 · **Game length:** 5–30 minutes
 
 ## Purpose
 
@@ -166,4 +166,4 @@ Static games can run on GitHub Pages. External services are optional and permiss
 
 ## Status
 
-All 108 templates are documented as designs; they are **not** claimed to be implemented, tested or live. The examples in `examples/` are replaceable content-pack specifications.
+All 108 templates are implemented and playable in the PlayLab Arcade of each Essentials Edition (Gold Edition) workbook. Automated play-through tests cover them; a human playtest for feel and difficulty is still welcome. A game score is practice feedback, not certification.

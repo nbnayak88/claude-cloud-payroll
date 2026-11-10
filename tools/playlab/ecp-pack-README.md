@@ -1,6 +1,6 @@
 # PlayLab 108 — Employee Central Payroll Example Content Pack
 
-**Status:** design example only · 108 mapped game instances · 5–30 minutes each · not implemented
+**Status:** 108 mapped game instances · 5–30 minutes each · playable in the Essentials Edition (Gold Edition) workbooks
 
 ## Source and boundaries
 
