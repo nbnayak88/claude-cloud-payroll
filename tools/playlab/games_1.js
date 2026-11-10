@@ -65,8 +65,8 @@ G['PL108-012']=function(c){
 G['PL108-011']=function(c){
   var N=10,words=pick(c.pack.words.map(function(x){return x[0]}).filter(function(w){return w.length<=N}),6,c.r),grid,pos={},found={},sel=null,dirs=[[0,1],[1,0],[1,1]];
   function build(){
-    grid=[];for(var i=0;i<N;i++){grid.push([]);for(var j=0;j<N;j++)grid[i].push('')}
-    words.forEach(function(w){var ok=false,tries=0;while(!ok&&tries++<400){var d=dirs[Math.floor(c.r()*dirs.length)],r=Math.floor(c.r()*N),cc=Math.floor(c.r()*N),er=r+d[0]*(w.length-1),ec=cc+d[1]*(w.length-1);if(er>=N||ec>=N)continue;var fit=true;for(var k=0;k<w.length;k++){var ch=grid[r+d[0]*k][cc+d[1]*k];if(ch&&ch!==w[k]){fit=false;break}}if(!fit)continue;for(var k2=0;k2<w.length;k2++)grid[r+d[0]*k2][cc+d[1]*k2]=w[k2];pos[w]={r:r,c:cc,d:d};ok=true}});
+    for(var att=0;att<30;att++){pos={};grid=[];for(var i=0;i<N;i++){grid.push([]);for(var j=0;j<N;j++)grid[i].push('')}
+    words.forEach(function(w){var ok=false,tries=0;while(!ok&&tries++<400){var d=dirs[Math.floor(c.r()*dirs.length)],r=Math.floor(c.r()*N),cc=Math.floor(c.r()*N),er=r+d[0]*(w.length-1),ec=cc+d[1]*(w.length-1);if(er>=N||ec>=N)continue;var fit=true;for(var k=0;k<w.length;k++){var ch=grid[r+d[0]*k][cc+d[1]*k];if(ch&&ch!==w[k]){fit=false;break}}if(!fit)continue;for(var k2=0;k2<w.length;k2++)grid[r+d[0]*k2][cc+d[1]*k2]=w[k2];pos[w]={r:r,c:cc,d:d};ok=true}});if(words.every(function(w){return pos[w]}))break}
     var L='ABCDEFGHIJKLMNOPQRSTUVWXYZ';for(var a=0;a<N;a++)for(var b=0;b<N;b++)if(!grid[a][b])grid[a][b]=L[Math.floor(c.r()*26)];
   }
   function cells(w){var p=pos[w],o={};for(var k=0;k<w.length;k++)o[(p.r+p.d[0]*k)+','+(p.c+p.d[1]*k)]=1;return o}

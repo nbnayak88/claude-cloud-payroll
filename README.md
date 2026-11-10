@@ -43,3 +43,7 @@ Every workbook and the hub use the country's two-stop gradient from [nbnayak88/C
 (`tools/colorslab-108.json`, copied from commit 8681b04; `tools/colorslab.py` builds the theme CSS). Gradient direction is
 `linear-gradient(110deg, start 0%, end 100%)`, hero text is dark ink checked at 4.5:1 or better against both stops, buttons are solid blue
 `#1263B4`, and the palettes are a design proposal, not official flag colours. Turkey uses the Türkiye palette and Czech Republic uses Czechia.
+
+## HR Streams Lab
+
+`/hr-lab/` runs the PlayLab arcade of 108 games across the 12 streams of HR (HR01–HR12, Workforce theme). Each stream has its own content pack; HR07 Payroll reuses the payroll case. Build with `python3 tools/hr_lab/build_hr_lab.py`. Packs are generated from per-stream lexicons (`tools/hr_lab/hrspec_hr*.py`) by `tools/hr_lab/hrgen.py`. All 108 games × 12 streams pass the automated auto-play test. Content is v1: many derived games are formulaic.
