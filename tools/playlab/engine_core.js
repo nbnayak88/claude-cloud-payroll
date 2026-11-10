@@ -9,6 +9,7 @@ function rng(seed){var a=seed>>>0;return function(){a|=0;a=a+0x6D2B79F5|0;var t=
 function shuffle(arr,r){var a=arr.slice();for(var i=a.length-1;i>0;i--){var j=Math.floor(r()*(i+1)),t=a[i];a[i]=a[j];a[j]=t}return a}
 function pick(arr,n,r){return shuffle(arr,r).slice(0,n)}
 function mix(q,r){var o=q.options.map(function(t,i){return{t:t,ok:i===q.answer}});return{q:q.q,why:q.why,opts:shuffle(o,r)}}
+function U(k,d){var u=(DATA&&DATA.pack&&DATA.pack.ui)||{};return u[k]!==undefined?u[k]:d}
 function fmt(n){return Number(n).toLocaleString('en-IN')}
 function load(){try{return JSON.parse(localStorage.getItem(RK)||'[]')}catch(e){return[]}}
 function save(list){try{localStorage.setItem(RK,JSON.stringify(list.slice(-300)))}catch(e){}}
@@ -22,7 +23,7 @@ function home(){
   var res=load(),won=DATA.registry.filter(function(t){return res.some(function(x){return x.templateId===t.templateId&&x.outcome==='won'})}).length;
   return '<div class="card"><div class="side-stat"><strong>'+impl+' playable · '+(DATA.registry.length-impl)+' design only</strong><span>'+won+' won on this device</span></div>'+
   '<p>PlayLab 108 is the SuccessLabs game standard: 108 reusable templates, each with a visible start, rules, feedback, scoring, an end screen and retry. This arcade runs the <strong>'+esc(DATA.pack.subject)+'</strong> content pack with fictional data. '+((DATA.registry.length-impl)?'Games marked <em>Design only</em> are specified in the standard but not built yet.':'All 108 templates are playable in this pack.')+'</p>'+
-  '<div class="notice" role="note">Fictional scenarios, original to this workbook; not official product game content, not a certification. A game score does not prove skills or readiness. Source line for PlayLab: '+esc(DATA.source)+'</div>'+
+  '<div class="notice" role="note">Fictional scenarios, original to this '+esc(U('where','workbook'))+'; not official product game content, not a certification. A game score does not prove skills or readiness. Source line for PlayLab: '+esc(DATA.source)+'</div>'+
   '<div class="pager"><button class="btn" id="arcexport">Export results (JSON)</button><button class="btn" id="arcclear">Clear my results</button></div></div>'+
   order.map(function(f){return '<div class="sectiontitle"><h2>'+esc(f)+'</h2><span class="small muted">'+fams[f].filter(function(t){return G[t.templateId]}).length+' of '+fams[f].length+' playable</span></div><div class="arc-grid">'+fams[f].map(function(t){var ok=!!G[t.templateId],b=best(t.templateId);
     return '<div class="arc-tile'+(ok?'':' off')+'"><span class="label muted">'+esc(t.templateId)+' · '+t.defaultMinutes+' min</span><strong>'+esc(t.name)+'</strong><p class="small muted">'+esc(t.topic)+'</p>'+(ok?'<button class="btn primary" data-play="'+t.templateId+'" aria-label="Play '+esc(t.name)+'">'+(b>=0?'Play again · best '+b:'Play')+'</button>':'<span class="pill">Design only</span>')+'</div>'}).join('')+'</div>'}).join('');
@@ -89,6 +90,6 @@ function start(id,o){
     c.handles.push(setInterval(function(){if(c.done||c.stopped)return;c.left--;upd();if(c.left<=0)c.end(false,'The session time ran out.')},1000))}
   G[id](c);
 }
-function init(d){DATA=d}
+function init(d){DATA=d;if(d&&d.pack&&d.pack.ui&&d.pack.ui.resultsKey)RK=d.pack.ui.resultsKey}
 function auto(){if(!cur||cur.done)return;var g=cur.body&&cur.body.querySelector('.askgo');if(g)return g.click();if(cur.auto)cur.auto()}
 function state(){return cur}

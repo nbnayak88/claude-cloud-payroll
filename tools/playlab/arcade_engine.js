@@ -9,6 +9,7 @@ function rng(seed){var a=seed>>>0;return function(){a|=0;a=a+0x6D2B79F5|0;var t=
 function shuffle(arr,r){var a=arr.slice();for(var i=a.length-1;i>0;i--){var j=Math.floor(r()*(i+1)),t=a[i];a[i]=a[j];a[j]=t}return a}
 function pick(arr,n,r){return shuffle(arr,r).slice(0,n)}
 function mix(q,r){var o=q.options.map(function(t,i){return{t:t,ok:i===q.answer}});return{q:q.q,why:q.why,opts:shuffle(o,r)}}
+function U(k,d){var u=(DATA&&DATA.pack&&DATA.pack.ui)||{};return u[k]!==undefined?u[k]:d}
 function fmt(n){return Number(n).toLocaleString('en-IN')}
 function load(){try{return JSON.parse(localStorage.getItem(RK)||'[]')}catch(e){return[]}}
 function save(list){try{localStorage.setItem(RK,JSON.stringify(list.slice(-300)))}catch(e){}}
@@ -22,7 +23,7 @@ function home(){
   var res=load(),won=DATA.registry.filter(function(t){return res.some(function(x){return x.templateId===t.templateId&&x.outcome==='won'})}).length;
   return '<div class="card"><div class="side-stat"><strong>'+impl+' playable · '+(DATA.registry.length-impl)+' design only</strong><span>'+won+' won on this device</span></div>'+
   '<p>PlayLab 108 is the SuccessLabs game standard: 108 reusable templates, each with a visible start, rules, feedback, scoring, an end screen and retry. This arcade runs the <strong>'+esc(DATA.pack.subject)+'</strong> content pack with fictional data. '+((DATA.registry.length-impl)?'Games marked <em>Design only</em> are specified in the standard but not built yet.':'All 108 templates are playable in this pack.')+'</p>'+
-  '<div class="notice" role="note">Fictional scenarios, original to this workbook; not official product game content, not a certification. A game score does not prove skills or readiness. Source line for PlayLab: '+esc(DATA.source)+'</div>'+
+  '<div class="notice" role="note">Fictional scenarios, original to this '+esc(U('where','workbook'))+'; not official product game content, not a certification. A game score does not prove skills or readiness. Source line for PlayLab: '+esc(DATA.source)+'</div>'+
   '<div class="pager"><button class="btn" id="arcexport">Export results (JSON)</button><button class="btn" id="arcclear">Clear my results</button></div></div>'+
   order.map(function(f){return '<div class="sectiontitle"><h2>'+esc(f)+'</h2><span class="small muted">'+fams[f].filter(function(t){return G[t.templateId]}).length+' of '+fams[f].length+' playable</span></div><div class="arc-grid">'+fams[f].map(function(t){var ok=!!G[t.templateId],b=best(t.templateId);
     return '<div class="arc-tile'+(ok?'':' off')+'"><span class="label muted">'+esc(t.templateId)+' · '+t.defaultMinutes+' min</span><strong>'+esc(t.name)+'</strong><p class="small muted">'+esc(t.topic)+'</p>'+(ok?'<button class="btn primary" data-play="'+t.templateId+'" aria-label="Play '+esc(t.name)+'">'+(b>=0?'Play again · best '+b:'Play')+'</button>':'<span class="pill">Design only</span>')+'</div>'}).join('')+'</div>'}).join('');
@@ -89,7 +90,7 @@ function start(id,o){
     c.handles.push(setInterval(function(){if(c.done||c.stopped)return;c.left--;upd();if(c.left<=0)c.end(false,'The session time ran out.')},1000))}
   G[id](c);
 }
-function init(d){DATA=d}
+function init(d){DATA=d;if(d&&d.pack&&d.pack.ui&&d.pack.ui.resultsKey)RK=d.pack.ui.resultsKey}
 function auto(){if(!cur||cur.done)return;var g=cur.body&&cur.body.querySelector('.askgo');if(g)return g.click();if(cur.auto)cur.auto()}
 function state(){return cur}
 
@@ -413,7 +414,7 @@ G['PL108-082']=function(c){
 };
 G['PL108-085']=function(c){
   var rows=c.pack.recon,verdict={},fixed={};
-  function draw(){c.draw('<p>Compare Employee Central (source) with the payroll system. Mark each row, then correct every mismatch to the source value.</p><table class="table"><thead><tr><th>Worker</th><th>Field</th><th>Employee Central</th><th>Payroll</th><th>Your call</th></tr></thead><tbody>'+rows.map(function(r,i){return'<tr><td>'+esc(r.w)+'</td><td>'+esc(r.f)+'</td><td>'+esc(r.a)+'</td><td>'+esc(fixed[i]?r.a:r.b)+'</td><td>'+(fixed[i]?'✓ corrected':verdict[i]==='ok'?'✓ match':verdict[i]==='bad'?'<button class="btn" data-a="fix" data-v="'+i+'">Correct to source</button>':'<button class="btn" data-a="m" data-v="'+i+'">Match</button> <button class="btn" data-a="x" data-v="'+i+'">Mismatch</button>')+'</td></tr>'}).join('')+'</tbody></table>',{m:function(v){mark(Number(v),'ok')},x:function(v){mark(Number(v),'bad')},fix:function(v){fixed[v]=true;c.good();check()}})}
+  function draw(){c.draw('<p>Compare '+esc(U('src','Employee Central'))+' (source) with '+esc(U('dstPhrase','the payroll system'))+'. Mark each row, then correct every mismatch to the source value.</p><table class="table"><thead><tr><th>'+esc(U('entity','Worker'))+'</th><th>Field</th><th>'+esc(U('src','Employee Central'))+'</th><th>'+esc(U('dst','Payroll'))+'</th><th>Your call</th></tr></thead><tbody>'+rows.map(function(r,i){return'<tr><td>'+esc(r.w)+'</td><td>'+esc(r.f)+'</td><td>'+esc(r.a)+'</td><td>'+esc(fixed[i]?r.a:r.b)+'</td><td>'+(fixed[i]?'✓ corrected':verdict[i]==='ok'?'✓ match':verdict[i]==='bad'?'<button class="btn" data-a="fix" data-v="'+i+'">Correct to source</button>':'<button class="btn" data-a="m" data-v="'+i+'">Match</button> <button class="btn" data-a="x" data-v="'+i+'">Mismatch</button>')+'</td></tr>'}).join('')+'</tbody></table>',{m:function(v){mark(Number(v),'ok')},x:function(v){mark(Number(v),'bad')},fix:function(v){fixed[v]=true;c.good();check()}})}
   function mark(i,v){var truth=rows[i].a===rows[i].b?'ok':'bad';if(v===truth){verdict[i]=v;c.good();c.say('Right call.')}else{c.miss();c.penalty(8);c.say('Look at both values again.')}check()}
   function check(){if(rows.every(function(r,i){return verdict[i]==='ok'||fixed[i]}))return c.end(true,'All records reconciled.');draw()}
   c.auto=function(){for(var i=0;i<rows.length;i++){if(!verdict[i]){return mark(i,rows[i].a===rows[i].b?'ok':'bad')}if(verdict[i]==='bad'&&!fixed[i]){fixed[i]=true;c.good();return check()}}};
@@ -759,7 +760,7 @@ function logicGame(c,LG,note){
     if(bad){wrong++;c.miss();c.penalty(6);c.say(bad+' of your choices conflict with the clues.')}else c.say(empty+' cells are still empty.');if(wrong>=8)c.end(false,'Too many wrong checks.')}
   function hint(){var t=sels().find(function(x){return Number(x.value)!==want(x)});if(!t)return;t.value=want(t);t.style.background='#fff3d6';c.penalty(8)}
   c.auto=function(){sels().forEach(function(s){s.value=want(s)});chk()};draw()}
-G['PL108-038']=function(c){logicGame(c,c.pack.logic1,'Match each worker with a pay item and a payroll area. All of this is fictional.')};
+G['PL108-038']=function(c){logicGame(c,c.pack.logic1,'Match each '+c.pack.logic1.cats[0].toLowerCase()+' with a '+c.pack.logic1.cats[1].toLowerCase()+' and a '+c.pack.logic1.cats[2].toLowerCase()+'. All of this is fictional.')};
 G['PL108-044']=function(c){logicGame(c,c.pack.logic2,'Four workers stand in a row in ID order (left to right). Find every attribute for each worker. All of this is fictional.')};
 G['PL108-041']=function(c){
   var P=pick(c.pack.nonogram,2,c.r),pi=0,g,wrong=0;
@@ -811,7 +812,7 @@ G['PL108-047']=function(c){
 };
 function oq(c){var O=c.pack.odd,o=O[Math.floor(c.r()*O.length)];return{q:'Which one does not belong?',why:o.why,opts:shuffle(o.items.map(function(t,k){return{t:t,ok:k===o.odd}}),c.r)}}
 G['PL108-048']=function(c){
-  var stages=[['Prepare the cutover',[['Quiz check',nq],['Odd one out',oq]]],['Replicate and verify',[['Term check',dq],['True or false',tq]]],['Release the pay',[['Numbers check',pq],['Final quiz',nq]]]],si=0,oi=0,wrong=0,done=0,TOTAL=6;
+  var stages=[[U('stage1','Prepare the cutover'),[['Quiz check',nq],['Odd one out',oq]]],[U('stage2','Replicate and verify'),[['Term check',dq],['True or false',tq]]],[U('stage3','Release the pay'),[['Numbers check',pq],['Final quiz',nq]]]],si=0,oi=0,wrong=0,done=0,TOTAL=6;
   function list(){return'<ul class="small">'+stages.map(function(s,k){return'<li><b>'+esc(s[0])+'</b>: '+s[1].map(function(o,j){return(k<si||(k===si&&j<oi)?'✓ ':'○ ')+o[0]}).join(' · ')+'</li>'}).join('')+'</ul>'}
   function obj(){var st=stages[si],o=st[1][oi];c.draw('<p><strong>Stage '+(si+1)+' / '+stages.length+': '+esc(st[0])+'</strong> · objective '+(done+1)+' / '+TOTAL+' · wrong '+wrong+' / 5</p>'+list()+'<div id="ask"></div>');
     c.ask(c.$('#ask'),o[1](c),function(ok){if(!ok){wrong++;c.penalty(8);if(wrong>=5)return c.end(false,'The mission failed after five wrong answers.');return obj()}done++;oi++;if(oi>=st[1].length){oi=0;si++}c.setScore(100*done/TOTAL-wrong*8);
@@ -1100,8 +1101,8 @@ G['PL108-088']=function(c){
 };
 G['PL108-089']=function(c){
   var I=c.pack.integ,runs=0,right={};I.right.forEach(function(r){right[r[0]]=r[2]});
-  c.draw('<p>'+esc(I.note)+' Runs '+runs+' / 6.</p><table class="table"><thead><tr><th>Field</th><th>Employee Central value</th><th>Payroll code</th></tr></thead><tbody>'+I.rows.map(function(r,i){return'<tr><td>'+esc(r[0])+'</td><td>'+esc(r[1])+'</td><td><select class="im" data-f="'+esc(r[0])+'" aria-label="payroll code for '+esc(r[0])+'" style="'+INP+'"><option value="">?</option>'+r[2].map(function(o){return'<option>'+esc(o)+'</option>'}).join('')+'</select></td></tr>'}).join('')+'</tbody></table><div id="res"></div><button class="btn primary" data-a="run">Run the integration tests</button>',{run:run});
-  function run(){runs++;var pass=0,html='';c.body.querySelectorAll('.im').forEach(function(s,i){var ok=s.value===right[s.dataset.f];if(ok)pass++;html+='<li>'+(ok?'✅ ':'❌ ')+'TEST-IN-00'+(i+1)+' replicates with '+esc(s.dataset.f)+'</li>'});c.$('#res').innerHTML='<ul>'+html+'</ul>';
+  c.draw('<p>'+esc(I.note)+' Runs '+runs+' / 6.</p><table class="table"><thead><tr><th>Field</th><th>'+esc(U('src','Employee Central'))+' value</th><th>'+esc(U('dst','Payroll'))+' code</th></tr></thead><tbody>'+I.rows.map(function(r,i){return'<tr><td>'+esc(r[0])+'</td><td>'+esc(r[1])+'</td><td><select class="im" data-f="'+esc(r[0])+'" aria-label="'+esc(U('dst','Payroll').toLowerCase())+' code for '+esc(r[0])+'" style="'+INP+'"><option value="">?</option>'+r[2].map(function(o){return'<option>'+esc(o)+'</option>'}).join('')+'</select></td></tr>'}).join('')+'</tbody></table><div id="res"></div><button class="btn primary" data-a="run">Run the integration tests</button>',{run:run});
+  function run(){runs++;var pass=0,html='';c.body.querySelectorAll('.im').forEach(function(s,i){var ok=s.value===right[s.dataset.f];if(ok)pass++;html+='<li>'+(ok?'✅ ':'❌ ')+c.pack.recon[0].w.replace(/\d+$/,'')+'00'+(i+1)+' '+esc(U('verb','replicates with'))+' '+esc(s.dataset.f)+'</li>'});c.$('#res').innerHTML='<ul>'+html+'</ul>';
     if(pass===I.rows.length)return c.end(true,'The whole integration suite passes.');c.miss();c.penalty(8);c.say(pass+' of '+I.rows.length+' tests pass.');if(runs>=6)c.end(false,'Out of runs.')}
   c.auto=function(){c.body.querySelectorAll('.im').forEach(function(s){s.value=right[s.dataset.f]});run()};
 };
@@ -1171,7 +1172,7 @@ G['PL108-101']=function(c){
   var P=pick(c.pack.numpuz,2,c.r),pi=0,cards,sel=-1,op='',moves=0,hist=[];
   function start(){cards=P[pi].nums.slice();sel=-1;op='';hist=[];draw()}
   var SYM={'+':'+','-':'−','*':'×','/':'÷'};
-  function draw(){c.draw('<p><strong>Puzzle '+(pi+1)+' / '+P.length+'</strong> · target <b>'+P[pi].target+'</b> · moves '+moves+'. Combine two numbers with an operation. Numbers are in thousands of INR.</p><div class="pager" style="justify-content:flex-start">'+cards.map(function(v,i){return'<button class="btn'+(sel===i?' primary':'')+'" data-a="cd" data-v="'+i+'" style="font-size:20px;min-width:64px">'+v+'</button>'}).join('')+'</div><p class="small">'+(sel<0?'Pick a first number.':op?'Now pick the second number.':'Pick an operation.')+'</p><div class="pager" style="justify-content:flex-start">'+['+','-','*','/'].map(function(o){return'<button class="btn'+(op===o?' primary':'')+'" data-a="op" data-v="'+o+'" style="font-size:20px">'+SYM[o]+'</button>'}).join('')+'<button class="btn" data-a="undo">Undo</button><button class="btn" data-a="reset">Reset</button></div>',
+  function draw(){c.draw('<p><strong>Puzzle '+(pi+1)+' / '+P.length+'</strong> · target <b>'+P[pi].target+'</b> · moves '+moves+'. Combine two numbers with an operation. Numbers are in thousands of '+esc(c.pack.cur)+'.</p><div class="pager" style="justify-content:flex-start">'+cards.map(function(v,i){return'<button class="btn'+(sel===i?' primary':'')+'" data-a="cd" data-v="'+i+'" style="font-size:20px;min-width:64px">'+v+'</button>'}).join('')+'</div><p class="small">'+(sel<0?'Pick a first number.':op?'Now pick the second number.':'Pick an operation.')+'</p><div class="pager" style="justify-content:flex-start">'+['+','-','*','/'].map(function(o){return'<button class="btn'+(op===o?' primary':'')+'" data-a="op" data-v="'+o+'" style="font-size:20px">'+SYM[o]+'</button>'}).join('')+'<button class="btn" data-a="undo">Undo</button><button class="btn" data-a="reset">Reset</button></div>',
     {cd:function(v){var i=Number(v);if(sel<0){sel=i;return draw()}if(!op){sel=i;return draw()}if(i===sel){c.say('Pick a different number.');return}combine(sel,i)},op:function(v){if(sel<0){c.say('Pick a first number.');return}op=v;draw()},undo:function(){if(hist.length){cards=hist.pop();sel=-1;op=''}draw()},reset:start})}
   function combine(i,j){var a=cards[i],b=cards[j],v;if(op==='+')v=a+b;else if(op==='-'){if(a<=b){c.say('The result must be above zero.');return}v=a-b}else if(op==='*')v=a*b;else{if(b===0||a%b){c.say('Division must give a whole number.');return}v=a/b}
     hist.push(cards.slice());cards=cards.filter(function(_,k){return k!==i&&k!==j}).concat([v]);sel=-1;op='';moves++;c.good();
@@ -1182,7 +1183,7 @@ G['PL108-101']=function(c){
 };
 G['PL108-102']=function(c){
   var E=pick(c.pack.equations,4,c.r),i=0,wrong=0;
-  function draw(){c.draw('<p><strong>Lock '+(i+1)+' / '+E.length+'</strong> · wrong tries '+wrong+' / 5</p><p style="font-size:20px">'+esc(E[i][0])+'</p><p class="small">Solve for x (an amount in INR).</p><div class="pager" style="justify-content:flex-start"><input id="eq" aria-label="value of x" style="'+INP+'"><button class="btn primary" data-a="go">Try the code</button></div>',{go:go})}
+  function draw(){c.draw('<p><strong>Lock '+(i+1)+' / '+E.length+'</strong> · wrong tries '+wrong+' / 5</p><p style="font-size:20px">'+esc(E[i][0])+'</p><p class="small">Solve for x (an amount in '+esc(c.pack.cur)+').</p><div class="pager" style="justify-content:flex-start"><input id="eq" aria-label="value of x" style="'+INP+'"><button class="btn primary" data-a="go">Try the code</button></div>',{go:go})}
   function go(){var v=num(c.$('#eq').value);if(Math.abs(v-E[i][1])<.5){c.good();i++;if(i>=E.length)return c.end(true,'All doors unlocked with '+wrong+' wrong tries.');c.say('Unlocked.');return draw()}wrong++;c.miss();c.penalty(10);c.say('That value does not satisfy the equation.');if(wrong>=5)return c.end(false,'The final door stayed shut.');draw()}
   c.auto=function(){c.$('#eq').value=E[i][1];go()};draw();
 };
@@ -1206,9 +1207,9 @@ G['PL108-107']=function(c){
   var B=c.pack.breakeven,bi=0,wrong=0;
   function calc(){var s=B[bi],p=Number(c.$('#pr').value),k=Number(c.$('#vc').value),u=Math.min(s.cap,Math.max(0,s.demand[0]-s.demand[1]*p)),cost=s.costs[k],profit=u*(p-cost[0])-s.fixed-cost[1];return{p:p,k:k,u:u,profit:profit,cost:cost}}
   function show(){var r=calc(),s=B[bi];c.$('#out').innerHTML='Units sold <b>'+r.u+'</b> (need at least '+s.min_units+') · revenue '+fmt(r.u*r.p)+' · costs '+fmt(r.u*r.cost[0]+s.fixed+r.cost[1])+' · profit <b>'+fmt(r.profit)+'</b>'}
-  function draw(){var s=B[bi];c.draw('<p><strong>'+esc(s.title)+' ('+(bi+1)+' / '+B.length+')</strong> · fixed cost '+fmt(s.fixed)+' · capacity '+s.cap+' payslips · failed months '+wrong+' / 5</p><p class="small">Higher prices reduce demand (demand = '+s.demand[0]+' − '+s.demand[1]+' × price). Reach break-even (profit of zero or more) while serving at least '+s.min_units+' payslips.</p><div class="pager" style="justify-content:flex-start"><label>Price per payslip <select id="pr" style="'+INP+'">'+(function(){var o='';for(var p=s.price[0];p<=s.price[1];p+=s.price[2])o+='<option>'+p+'</option>';return o})()+'</select></label><label>Method <select id="vc" style="'+INP+'">'+s.costs.map(function(x,k){return'<option value="'+k+'">Cost '+x[0]+' per payslip'+(x[1]?' (+'+fmt(x[1])+' setup)':'')+'</option>'}).join('')+'</select></label></div><p id="out"></p><button class="btn primary" data-a="go">Close the month</button>',{go:go});
+  function draw(){var s=B[bi];c.draw('<p><strong>'+esc(s.title)+' ('+(bi+1)+' / '+B.length+')</strong> · fixed cost '+fmt(s.fixed)+' · capacity '+s.cap+' '+esc(U('unit','payslips'))+' · failed months '+wrong+' / 5</p><p class="small">Higher prices reduce demand (demand = '+s.demand[0]+' − '+s.demand[1]+' × price). Reach break-even (profit of zero or more) while serving at least '+s.min_units+' '+esc(U('unit','payslips'))+'.</p><div class="pager" style="justify-content:flex-start"><label>Price per '+esc(U('unit1','payslip'))+' <select id="pr" style="'+INP+'">'+(function(){var o='';for(var p=s.price[0];p<=s.price[1];p+=s.price[2])o+='<option>'+p+'</option>';return o})()+'</select></label><label>Method <select id="vc" style="'+INP+'">'+s.costs.map(function(x,k){return'<option value="'+k+'">Cost '+x[0]+' per '+esc(U('unit1','payslip'))+(x[1]?' (+'+fmt(x[1])+' setup)':'')+'</option>'}).join('')+'</select></label></div><p id="out"></p><button class="btn primary" data-a="go">Close the month</button>',{go:go});
     c.$('#pr').onchange=show;c.$('#vc').onchange=show;show()}
-  function go(){var r=calc(),s=B[bi];if(r.profit>=0&&r.u>=s.min_units){c.good();bi++;if(bi>=B.length)return c.end(true,'You broke even in all three months.');c.say('Break-even reached.');return draw()}wrong++;c.miss();c.penalty(10);c.say(r.u<s.min_units?'Too few payslips served.':'The month made a loss.');if(wrong>=5)c.end(false,'Too many loss-making months.')}
+  function go(){var r=calc(),s=B[bi];if(r.profit>=0&&r.u>=s.min_units){c.good();bi++;if(bi>=B.length)return c.end(true,'You broke even in all three months.');c.say('Break-even reached.');return draw()}wrong++;c.miss();c.penalty(10);c.say(r.u<s.min_units?'Too few '+esc(U('unit','payslips'))+' served.':'The month made a loss.');if(wrong>=5)c.end(false,'Too many loss-making months.')}
   c.auto=function(){var s=B[bi],best=null;for(var p=s.price[0];p<=s.price[1];p+=s.price[2])s.costs.forEach(function(x,k){var u=Math.min(s.cap,Math.max(0,s.demand[0]-s.demand[1]*p)),pf=u*(p-x[0])-s.fixed-x[1];if(u>=s.min_units&&pf>=0&&(!best||pf>best.pf))best={p:p,k:k,pf:pf}});
     c.$('#pr').value=best.p;c.$('#vc').value=best.k;go()};draw();
 };

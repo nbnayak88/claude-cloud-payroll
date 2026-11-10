@@ -60,7 +60,7 @@ function logicGame(c,LG,note){
     if(bad){wrong++;c.miss();c.penalty(6);c.say(bad+' of your choices conflict with the clues.')}else c.say(empty+' cells are still empty.');if(wrong>=8)c.end(false,'Too many wrong checks.')}
   function hint(){var t=sels().find(function(x){return Number(x.value)!==want(x)});if(!t)return;t.value=want(t);t.style.background='#fff3d6';c.penalty(8)}
   c.auto=function(){sels().forEach(function(s){s.value=want(s)});chk()};draw()}
-G['PL108-038']=function(c){logicGame(c,c.pack.logic1,'Match each worker with a pay item and a payroll area. All of this is fictional.')};
+G['PL108-038']=function(c){logicGame(c,c.pack.logic1,'Match each '+c.pack.logic1.cats[0].toLowerCase()+' with a '+c.pack.logic1.cats[1].toLowerCase()+' and a '+c.pack.logic1.cats[2].toLowerCase()+'. All of this is fictional.')};
 G['PL108-044']=function(c){logicGame(c,c.pack.logic2,'Four workers stand in a row in ID order (left to right). Find every attribute for each worker. All of this is fictional.')};
 G['PL108-041']=function(c){
   var P=pick(c.pack.nonogram,2,c.r),pi=0,g,wrong=0;
@@ -112,7 +112,7 @@ G['PL108-047']=function(c){
 };
 function oq(c){var O=c.pack.odd,o=O[Math.floor(c.r()*O.length)];return{q:'Which one does not belong?',why:o.why,opts:shuffle(o.items.map(function(t,k){return{t:t,ok:k===o.odd}}),c.r)}}
 G['PL108-048']=function(c){
-  var stages=[['Prepare the cutover',[['Quiz check',nq],['Odd one out',oq]]],['Replicate and verify',[['Term check',dq],['True or false',tq]]],['Release the pay',[['Numbers check',pq],['Final quiz',nq]]]],si=0,oi=0,wrong=0,done=0,TOTAL=6;
+  var stages=[[U('stage1','Prepare the cutover'),[['Quiz check',nq],['Odd one out',oq]]],[U('stage2','Replicate and verify'),[['Term check',dq],['True or false',tq]]],[U('stage3','Release the pay'),[['Numbers check',pq],['Final quiz',nq]]]],si=0,oi=0,wrong=0,done=0,TOTAL=6;
   function list(){return'<ul class="small">'+stages.map(function(s,k){return'<li><b>'+esc(s[0])+'</b>: '+s[1].map(function(o,j){return(k<si||(k===si&&j<oi)?'✓ ':'○ ')+o[0]}).join(' · ')+'</li>'}).join('')+'</ul>'}
   function obj(){var st=stages[si],o=st[1][oi];c.draw('<p><strong>Stage '+(si+1)+' / '+stages.length+': '+esc(st[0])+'</strong> · objective '+(done+1)+' / '+TOTAL+' · wrong '+wrong+' / 5</p>'+list()+'<div id="ask"></div>');
     c.ask(c.$('#ask'),o[1](c),function(ok){if(!ok){wrong++;c.penalty(8);if(wrong>=5)return c.end(false,'The mission failed after five wrong answers.');return obj()}done++;oi++;if(oi>=st[1].length){oi=0;si++}c.setScore(100*done/TOTAL-wrong*8);
