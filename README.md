@@ -55,3 +55,7 @@ Every workbook and the hub use the country's two-stop gradient from [nbnayak88/C
 ## Finance Streams Lab
 
 `/fi-lab/` runs the same 108-game PlayLab arcade across the 12 finance streams (FI01–FI12). Build with `LAB=fi python3 tools/hr_lab/build_hr_lab.py`. Lexicons live in `tools/hr_lab/hrspec_fi01.py` … `hrspec_fi12.py`.
+
+## Procurement Streams Lab
+
+`/pr-lab/` mirrors the arcade for the 12 Procurement streams (strategy, sourcing, contracts, supplier relationships, procure to pay, resilient supply, supplier quality, spend optimization, risk and sustainability, intelligence, AI, connected procurement), each with 108 games and its own content pack. Build with `LAB=pr python3 tools/hr_lab/build_hr_lab.py`.
