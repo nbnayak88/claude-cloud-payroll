@@ -176,7 +176,7 @@ def build(L):
     p['recon'] = [dict(w=tid(k // 2 + 1), f=F[k][0], a=F[k][1], b=(F[k][2] if k in badrows else F[k][1])) for k in range(8)]
     p['config'] = [dict(k=F[k][0], v=(F[k][2] if k in (1, 3, 6) else F[k][1]), rule=F[k][3], bad=(k in (1, 3, 6)), why=('The value does not match the rule.' if k in (1, 3, 6) else 'Matches the rule.')) for k in range(8)] + [dict(k='Owner', v='Named', rule='Every item needs a named owner', bad=False, why='Matches.'), dict(k='Review date', v='(blank)', rule='A review date must be set', bad=True, why='A blank date means nobody will review it.'), dict(k='Audit trail', v='On', rule='The audit trail must be on', bad=False, why='Matches.'), dict(k='Test data flag', v='Off', rule='Learning data must be flagged as test data', bad=True, why='The flag is off, so the data could be mistaken for real data.')]
     p['integ'] = dict(rows=[[f, s_, ops, 0] for f, s_, ops in L['integ']], note='Each row lists the source value and the code the receiving system expects. Pick the code that matches.', right=[[f, s_, ops[0]] for f, s_, ops in L['integ']])
-    p['audit'] = dict(reqs=['Approval of the monthly cycle', 'Release authorisation', 'Reconciliation of headcount', 'Access review for team members', 'Change log for configuration', 'Evidence of backup restore test'], docs=['Approval email 28 Nov', 'Release form', 'Headcount reconciliation sheet', 'Access review sheet', 'Configuration change log', 'Cafeteria menu', 'Holiday list', 'Team photo', 'Org chart', 'Training attendance', 'Release report', 'Meeting invite'], sol=[0, 1, 2, 3, 4, -1], missing=[5], note='Attach the best document to each requirement, or mark it missing when no document fits. Some documents are irrelevant.')
+    p['audit'] = dict(reqs=['Approval of the monthly cycle', 'Release authorisation', 'Reconciliation of %s' % L.get('recon_noun', 'headcount'), 'Access review for team members', 'Change log for configuration', 'Evidence of backup restore test'], docs=['Approval email 28 Nov', 'Release form', 'Headcount reconciliation sheet', 'Access review sheet', 'Configuration change log', 'Cafeteria menu', 'Holiday list', 'Team photo', 'Org chart', 'Training attendance', 'Release report', 'Meeting invite'], sol=[0, 1, 2, 3, 4, -1], missing=[5], note='Attach the best document to each requirement, or mark it missing when no document fits. Some documents are irrelevant.')
     ids = [tid(1), tid(2), tid(3), tid(4), tid(5)]
     pf = [(F[k][0], F[k][1]) for k in range(8)]
     pb = [(F[k][0], F[k][2] if k in (1, 5, 6) else F[k][1]) for k in range(8)]
@@ -214,7 +214,7 @@ def build(L):
       dict(rule='The team grows from 4 to 5 people.', q='What is the percentage growth?', opts=['20%', '25%', '30%', '40%'], a=1, why='1 ÷ 4 = 25%.'),
       dict(rule='Overhead is 12% of a baseline of 80,000.', q='What is the amount?', opts=['8,400', '9,000', '9,600', '10,000'], a=2, why='80,000 × 0.12 = 9,600.'),
       dict(rule='A total falls from 92,000 to 78,200.', q='What is the percentage fall?', opts=['12%', '15%', '18%', '20%'], a=1, why='13,800 ÷ 92,000 = 15%.')]
-    p['forecast'] = [dict(title='Headcount by month', series=[40, 42, 44, 46, 48], next=[50, 52, 54], rule='steady growth'), dict(title='Requests per week', series=[100, 110, 121, 133], next=[146, 161, 177], rule='about 10% growth'), dict(title='%s total (thousands)' % title(u), series=[800, 820, 840, 860], next=[880, 900, 920], rule='steady growth')]
+    p['forecast'] = [dict(title=L.get('fc1', 'Headcount by month'), series=[40, 42, 44, 46, 48], next=[50, 52, 54], rule='steady growth'), dict(title='Requests per week', series=[100, 110, 121, 133], next=[146, 161, 177], rule='about 10% growth'), dict(title='%s total (thousands)' % title(u), series=[800, 820, 840, 860], next=[880, 900, 920], rule='steady growth')]
     for i, b in enumerate(p['breakeven']): b['title'] = 'Service desk, month %d' % (i + 1)
     # ---- registry topics / challenges
     seen = {}
@@ -240,7 +240,7 @@ def build(L):
     for lg_ in ('logic1', 'logic2'):
         p[lg_]['items'][0] = [tid(i + 1) for i in range(len(p[lg_]['items'][0]))]
         p[lg_]['clues'] = [re.sub(r'TEST-HR-00(\d)', lambda m: tid(int(m.group(1))), c) for c in p[lg_]['clues']]
-    p['id'] = 'hr-streams.%s-%s.v1' % (code.lower(), L['slug']); p['subject'] = '%s %s' % (code, N); p['cur'] = 'USD'
+    p['id'] = 'streams.%s-%s.v1' % (code.lower(), L['slug']); p['subject'] = '%s %s' % (code, N); p['cur'] = 'USD'
     p['ui'] = dict(where='stream', src=L['sys'], dst=L['dst'], dstPhrase=L['dstPhrase'], entity=title(E), verb=L['verb'], unit=L['unit'], unit1=L['unit1'], stage1=L['stages'][0], stage2=L['stages'][1], stage3=L['stages'][2])
     a['source'] = 'Original fictional scenarios written for the HR Streams Lab'
     return a

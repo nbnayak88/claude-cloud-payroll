@@ -4,14 +4,21 @@ from pathlib import Path
 import json, re, sys, html, colorsys, copy
 HERE = Path(__file__).parent; REPO = HERE.parent.parent
 sys.path.insert(0, str(HERE)); sys.path.insert(0, str(REPO / 'tools'))
-from streams import STREAMS, file_of
-
-OUT = REPO / 'hr-lab'
+import os
+if os.environ.get('LAB') == 'cx':
+    from cxstreams import STREAMS, file_of
+    LAB = dict(name='CX Streams Lab', sub='12 streams of customer experience · 108 games each', intro='The PlayLab arcade of 108 games, played across all 12 streams of customer experience and CRM. Pick a stream and play with fictional scenarios drawn from that stream.', out='cx-lab')
+else:
+    from streams import STREAMS, file_of
+    LAB = dict(name='HR Streams Lab', sub='12 streams of HR · 108 games each', intro='The PlayLab arcade of 108 games, played across all 12 streams of HR. Pick a stream and play with fictional scenarios drawn from that stream.', out='hr-lab')
+OUT = REPO / LAB['out']
 ENGINE = (REPO / 'tools/playlab/arcade_engine.js').read_text()
 _zam = (REPO / 'Zambia.html').read_text(encoding='utf-8')
 BASE_CSS = re.search(r'<style>(.*?)</style>', _zam, re.S).group(1)
 BRAND = re.search(r'<div class="brand">.*?</div>', _zam, re.S).group(0)
-QUOTES = re.search(r'const quotes=\[.*?\];', _zam, re.S).group(0)
+QUOTES_HR = 'const quotes=["Understand the person behind every record.", "Good people practices turn policy into everyday trust.", "Learn the rule, test the exception, explain the outcome.", "Good design turns understanding into dependable action.", "Build confidence one verified result at a time.", "Every question you test strengthens the design.", "Local context gives global practice its meaning.", "Evidence turns a promising idea into trusted practice.", "Small experiments reveal the strongest learning paths.", "Trace the change until the whole story makes sense.", "A thoughtful question can prevent a thousand corrections.", "Design each employee experience with dignity and care.", "Learning grows when knowledge becomes an experiment.", "Fairness is a habit practised in small decisions.", "Make every choice something you can explain.", "A clear audit trail is a gift to the next learner.", "Explore the process, challenge assumptions, validate results.", "Accuracy is built through habits of careful discovery.", "Connect policy, people and systems with purposeful practice.", "Progress begins when you make your next idea testable.", "Let every exception teach you something about the system.", "Great teams grow where people can see their next step.", "Create learning that keeps evolving with the world.", "Trust grows where results can be traced and understood.", "Practice patiently; design boldly; verify thoughtfully.", "A useful workbook teaches you to ask better questions.", "Respect for people shows up in the details.", "Hiring is the start of a promise, not the end of a task.", "Data about people deserves the most careful hands.", "Clear roles and clear feedback help everyone grow.", "Behind every number is someone counting on it.", "Listen first; the best fixes start with understanding.", "Make the next step obvious for every employee.", "Simple processes are kinder processes.", "Reward what you want to see more of.", "Skills are the currency of the future of work.", "Check the data before you trust the dashboard.", "Every handoff is a chance to make work easier.", "Learn from every exception; it shows where the system can grow.", "Small improvements, measured, add up to a great workplace."];'
+QUOTES_CX = 'const quotes=["Listen first; every customer is telling you something.", "A great experience is built from many small, careful moments.", "Know the customer once, and serve them everywhere.", "Trust grows where promises and delivery match.", "Measure what matters, then act on what you learn.", "Every touchpoint is a chance to make life easier.", "Data without care is only noise; with care it becomes insight.", "Close the loop and customers remember you listened.", "Make the next step obvious, and the journey gets shorter.", "Good service feels effortless to the person receiving it.", "A clean record today prevents a confused customer tomorrow.", "Test the journey the way a customer would walk it.", "Personal means relevant, not intrusive.", "Ask one question at a time and listen to the answer.", "Retention is a promise renewed every day.", "Automate the routine so people can handle the human moments.", "Trace the problem to its source before you fix the symptom.", "Great teams share one view of the customer.", "Small improvements, measured, add up to loyalty.", "Design every message as if you would receive it yourself.", "Fairness and privacy are part of a good experience.", "A clear owner turns feedback into action.", "Speed matters, but understanding matters more.", "Evidence turns a good idea into trusted practice.", "Practice patiently; design boldly; verify thoughtfully.", "Partners succeed when the rules are clear and fair.", "Make every handoff something the customer never notices.", "Learn from every exception; it shows where the system can grow.", "Simple journeys win more customers than clever ones.", "Let the customer\'s words guide your priorities.", "Reliable operations are quiet, and customers love quiet.", "An honest answer today earns a loyal customer tomorrow.", "Connect people, data and systems with purpose.", "Explore the process, challenge assumptions, validate results.", "Build confidence one verified result at a time.", "Every question you test strengthens the design.", "Make every choice something you can explain.", "Progress begins when you make your next idea testable.", "Create learning that keeps evolving with the world.", "Understand the person behind every data field."];'
+QUOTES = QUOTES_CX if os.environ.get('LAB')=='cx' else QUOTES_HR
 MEDAL = re.search(r'<svg width="13".*?</svg>', _zam, re.S).group(0)
 
 def india_arcade():
@@ -43,15 +50,15 @@ def quote_js():
       "document.getElementById('dailyQuoteText').textContent='“'+quotes[day%quotes.length]+'”';document.getElementById('quoteDate').textContent='Quote of the day';}updateQuote();")
 
 def header(st=None):
-    sub = ('%s · %s' % (st['code'], st['name'])) if st else '12 streams of HR · 108 games each'
-    return ('<header class="hrhead"><div class="title"><strong>HR Streams Lab</strong><span class="small muted">%s</span></div>'
+    sub = ('%s · %s' % (st['code'], st['name'])) if st else LAB['sub']
+    return ('<header class="hrhead"><div class="title"><strong>%s</strong>' % LAB['name'] + '<span class="small muted">%s</span></div>'
             '<blockquote class="daily-quote" style="margin:0"><span id="dailyQuoteText"></span><small id="quoteDate"></small></blockquote>%s</header>' % (html.escape(sub), BRAND))
 
 def nav(cur=None):
     return '<nav class="streams" aria-label="HR streams">' + ''.join('<a href="%s"%s>%s %s</a>' % (file_of(s), ' class="on" aria-current="page"' if s['code'] == cur else '', s['code'], html.escape(s['name'])) for s in STREAMS) + '</nav>'
 
 def page(st, data):
-    title = '%s %s · HR Streams Lab' % (st['code'], st['name'])
+    title = '%s %s · %s' % (st['code'], st['name'], LAB['name'])
     return ('<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>%s</title><style>%s%s</style></head><body>' % (html.escape(title), BASE_CSS, css(st))
       + header(st) + '<main class="hrwrap" id="content">' + nav(st['code'])
       + '<section class="hero2"><p class="kick">%s · %s</p><h1>%s</h1><p>%s</p></section>' % (st['code'], html.escape(st['sys']), html.escape(st['name']), html.escape(st['tag']))
@@ -60,8 +67,8 @@ def page(st, data):
 
 def hub():
     cards = ''.join('<a class="arc-tile" href="%s" style="text-decoration:none;color:inherit;border-top:4px solid %s"><span class="label muted">%s</span><strong>%s</strong><p class="small muted">%s</p><span class="small">108 games →</span></a>' % (file_of(s), theme(s)['accent'], s['code'], html.escape(s['name']), html.escape(s['tag'])) for s in STREAMS)
-    return ('<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>HR Streams Lab</title><style>%s%s</style></head><body>' % (BASE_CSS, css(STREAMS[0]))
-      + header() + '<main class="hrwrap" id="content"><section class="hero2"><p class="kick">%s Essentials Edition (Gold Edition)</p><h1>HR Streams Lab</h1><p>The PlayLab arcade of 108 games, played across all 12 streams of HR. Pick a stream and play with fictional scenarios drawn from that stream.</p></section>' % MEDAL
+    return ('<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>%s</title>' % LAB['name'] + '<style>%s%s</style></head><body>' % (BASE_CSS, css(STREAMS[0]))
+      + header() + '<main class="hrwrap" id="content"><section class="hero2"><p class="kick">%s Essentials Edition (Gold Edition)</p><h1>%s</h1><p>%s</p></section>' % (MEDAL, LAB['name'], LAB['intro'])
       + '<div class="arc-grid" style="grid-template-columns:repeat(auto-fill,minmax(260px,1fr))">%s</div><p class="small muted">Independent learning material · Fictional scenarios and data · A game score does not prove skills or readiness.</p></main><script>%s</script></body></html>' % (cards, quote_js()))
 
 def build(only=None):

@@ -47,3 +47,7 @@ Every workbook and the hub use the country's two-stop gradient from [nbnayak88/C
 ## HR Streams Lab
 
 `/hr-lab/` runs the PlayLab arcade of 108 games across the 12 streams of HR (HR01–HR12, Workforce theme). Each stream has its own content pack; HR07 Payroll reuses the payroll case. Build with `python3 tools/hr_lab/build_hr_lab.py`. Packs are generated from per-stream lexicons (`tools/hr_lab/hrspec_hr*.py`) by `tools/hr_lab/hrgen.py`. All 108 games × 12 streams pass the automated auto-play test. Content is v1: many derived games are formulaic.
+
+## CX Streams Lab
+
+`/cx-lab/` runs the same 108-game PlayLab arcade across the 12 customer-experience streams (CX01–CX12). Each stream has its own content pack: vocabulary, quizzes, flows, issues and data fields. Build with `LAB=cx python3 tools/hr_lab/build_hr_lab.py`. Lexicons live in `tools/hr_lab/hrspec_cx01.py` … `hrspec_cx12.py`.
