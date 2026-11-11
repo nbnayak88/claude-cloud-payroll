@@ -51,3 +51,7 @@ Every workbook and the hub use the country's two-stop gradient from [nbnayak88/C
 ## CX Streams Lab
 
 `/cx-lab/` runs the same 108-game PlayLab arcade across the 12 customer-experience streams (CX01–CX12). Each stream has its own content pack: vocabulary, quizzes, flows, issues and data fields. Build with `LAB=cx python3 tools/hr_lab/build_hr_lab.py`. Lexicons live in `tools/hr_lab/hrspec_cx01.py` … `hrspec_cx12.py`.
+
+## Finance Streams Lab
+
+`/fi-lab/` runs the same 108-game PlayLab arcade across the 12 finance streams (FI01–FI12). Build with `LAB=fi python3 tools/hr_lab/build_hr_lab.py`. Lexicons live in `tools/hr_lab/hrspec_fi01.py` … `hrspec_fi12.py`.

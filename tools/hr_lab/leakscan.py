@@ -8,6 +8,7 @@ def strs(o, path=''):
     elif isinstance(o, list):
         for i, v in enumerate(o): yield from strs(v, path + '[%d]' % i)
 code = sys.argv[1]; d = json.load(open('/tmp/hrjson/%s.json' % code))
+if code.startswith('FI'): ALLOW[code] = r'ledger'
 al = re.compile(ALLOW.get(code, r'^$'), re.I)
 bad = {}
 for p, s in strs(d):
