@@ -59,3 +59,7 @@ Every workbook and the hub use the country's two-stop gradient from [nbnayak88/C
 ## Procurement Streams Lab
 
 `/pr-lab/` mirrors the arcade for the 12 Procurement streams (strategy, sourcing, contracts, supplier relationships, procure to pay, resilient supply, supplier quality, spend optimization, risk and sustainability, intelligence, AI, connected procurement), each with 108 games and its own content pack. Build with `LAB=pr python3 tools/hr_lab/build_hr_lab.py`.
+
+## Supply Chain Streams Lab
+
+`/sc-lab/` mirrors the arcade for 12 supply chain streams (strategy, demand planning, inventory, production planning, warehouse, transportation, order fulfilment, visibility, sustainable and circular supply, intelligence, AI, connected ecosystem), each with 108 games. Build with `LAB=sc python3 tools/hr_lab/build_hr_lab.py`.
